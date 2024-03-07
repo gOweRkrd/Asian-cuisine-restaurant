@@ -12,6 +12,9 @@
 		506270562B99976400FB63E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270552B99976400FB63E9 /* ViewController.swift */; };
 		5062705B2B99976600FB63E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5062705A2B99976600FB63E9 /* Assets.xcassets */; };
 		5062705E2B99976600FB63E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5062705C2B99976600FB63E9 /* LaunchScreen.storyboard */; };
+		5062706A2B999EE900FB63E9 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270692B999EE900FB63E9 /* R.swift */; };
+		506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270752B999F0600FB63E9 /* UIColor+Extension.swift */; };
+		506270792B999F0600FB63E9 /* UIView+AddSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270762B999F0600FB63E9 /* UIView+AddSubviews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,15 @@
 		5062705A2B99976600FB63E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5062705D2B99976600FB63E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5062705F2B99976600FB63E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506270692B999EE900FB63E9 /* R.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
+		506270752B999F0600FB63E9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		506270762B999F0600FB63E9 /* UIView+AddSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AddSubviews.swift"; sourceTree = "<group>"; };
+		5062707B2B99A51300FB63E9 /* PingFang Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Light.ttf"; sourceTree = "<group>"; };
+		5062707C2B99A51300FB63E9 /* PingFang ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang ExtraLight.ttf"; sourceTree = "<group>"; };
+		5062707D2B99A51300FB63E9 /* PingFang Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Medium.ttf"; sourceTree = "<group>"; };
+		5062707E2B99A51300FB63E9 /* PingFang Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Heavy.ttf"; sourceTree = "<group>"; };
+		5062707F2B99A51300FB63E9 /* PingFang Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Bold.ttf"; sourceTree = "<group>"; };
+		506270802B99A51300FB63E9 /* PingFang Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,71 @@
 		506270502B99976400FB63E9 /* Asian-cuisine-restaurant */ = {
 			isa = PBXGroup;
 			children = (
-				506270512B99976400FB63E9 /* AppDelegate.swift */,
-				506270532B99976400FB63E9 /* SceneDelegate.swift */,
-				506270552B99976400FB63E9 /* ViewController.swift */,
-				5062705A2B99976600FB63E9 /* Assets.xcassets */,
-				5062705C2B99976600FB63E9 /* LaunchScreen.storyboard */,
-				5062705F2B99976600FB63E9 /* Info.plist */,
+				506270662B999E2800FB63E9 /* Sources */,
+				506270652B999DD100FB63E9 /* Resources */,
 			);
 			path = "Asian-cuisine-restaurant";
+			sourceTree = "<group>";
+		};
+		506270652B999DD100FB63E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5062706B2B999EF100FB63E9 /* Fonts */,
+				5062705F2B99976600FB63E9 /* Info.plist */,
+				506270692B999EE900FB63E9 /* R.swift */,
+				5062705C2B99976600FB63E9 /* LaunchScreen.storyboard */,
+				5062705A2B99976600FB63E9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		506270662B999E2800FB63E9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				506270682B999EB300FB63E9 /* Module */,
+				506270742B999F0600FB63E9 /* Extensions */,
+				506270672B999EA000FB63E9 /* Application */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		506270672B999EA000FB63E9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				506270512B99976400FB63E9 /* AppDelegate.swift */,
+				506270532B99976400FB63E9 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		506270682B999EB300FB63E9 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				506270552B99976400FB63E9 /* ViewController.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		5062706B2B999EF100FB63E9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5062707F2B99A51300FB63E9 /* PingFang Bold.ttf */,
+				5062707C2B99A51300FB63E9 /* PingFang ExtraLight.ttf */,
+				5062707E2B99A51300FB63E9 /* PingFang Heavy.ttf */,
+				5062707B2B99A51300FB63E9 /* PingFang Light.ttf */,
+				5062707D2B99A51300FB63E9 /* PingFang Medium.ttf */,
+				506270802B99A51300FB63E9 /* PingFang Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		506270742B999F0600FB63E9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				506270752B999F0600FB63E9 /* UIColor+Extension.swift */,
+				506270762B999F0600FB63E9 /* UIView+AddSubviews.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,8 +147,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				506270872B99A6A900FB63E9 /* PBXTargetDependency */,
 			);
 			name = "Asian-cuisine-restaurant";
+			packageProductDependencies = (
+			);
 			productName = "Asian-cuisine-restaurant";
 			productReference = 5062704E2B99976400FB63E9 /* Asian-cuisine-restaurant.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +180,9 @@
 				Base,
 			);
 			mainGroup = 506270452B99976400FB63E9;
+			packageReferences = (
+				506270812B99A67800FB63E9 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			productRefGroup = 5062704F2B99976400FB63E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,13 +209,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5062706A2B999EE900FB63E9 /* R.swift in Sources */,
 				506270562B99976400FB63E9 /* ViewController.swift in Sources */,
+				506270792B999F0600FB63E9 /* UIView+AddSubviews.swift in Sources */,
 				506270522B99976400FB63E9 /* AppDelegate.swift in Sources */,
 				506270542B99976400FB63E9 /* SceneDelegate.swift in Sources */,
+				506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		506270872B99A6A900FB63E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 506270862B99A6A900FB63E9 /* SwiftLintPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5062705C2B99976600FB63E9 /* LaunchScreen.storyboard */ = {
@@ -280,8 +365,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 53J92LZ5NM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Asian-cuisine-restaurant/Info.plist";
+				INFOPLIST_FILE = "Asian-cuisine-restaurant/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -306,8 +392,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 53J92LZ5NM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Asian-cuisine-restaurant/Info.plist";
+				INFOPLIST_FILE = "Asian-cuisine-restaurant/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -347,6 +434,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		506270812B99A67800FB63E9 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.54.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		506270862B99A6A900FB63E9 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 506270812B99A67800FB63E9 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 506270462B99976400FB63E9 /* Project object */;
 }
