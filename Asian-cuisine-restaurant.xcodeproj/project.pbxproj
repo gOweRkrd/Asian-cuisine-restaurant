@@ -9,19 +9,22 @@
 /* Begin PBXBuildFile section */
 		506270522B99976400FB63E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270512B99976400FB63E9 /* AppDelegate.swift */; };
 		506270542B99976400FB63E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270532B99976400FB63E9 /* SceneDelegate.swift */; };
-		506270562B99976400FB63E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270552B99976400FB63E9 /* ViewController.swift */; };
+		506270562B99976400FB63E9 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270552B99976400FB63E9 /* RestaurantViewController.swift */; };
 		5062705B2B99976600FB63E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5062705A2B99976600FB63E9 /* Assets.xcassets */; };
 		5062705E2B99976600FB63E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5062705C2B99976600FB63E9 /* LaunchScreen.storyboard */; };
 		5062706A2B999EE900FB63E9 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270692B999EE900FB63E9 /* R.swift */; };
 		506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270752B999F0600FB63E9 /* UIColor+Extension.swift */; };
 		506270792B999F0600FB63E9 /* UIView+AddSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270762B999F0600FB63E9 /* UIView+AddSubviews.swift */; };
+		CEC079542B99DB8900E5FAB1 /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079532B99DB8900E5FAB1 /* RestaurantModel.swift */; };
+		CEC079562B99DBB000E5FAB1 /* RestaurantPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079552B99DBB000E5FAB1 /* RestaurantPresenter.swift */; };
+		CEC079582B99DCE200E5FAB1 /* RestaurantViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079572B99DCE200E5FAB1 /* RestaurantViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5062704E2B99976400FB63E9 /* Asian-cuisine-restaurant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asian-cuisine-restaurant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		506270512B99976400FB63E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		506270532B99976400FB63E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		506270552B99976400FB63E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		506270552B99976400FB63E9 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		5062705A2B99976600FB63E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5062705D2B99976600FB63E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5062705F2B99976600FB63E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +37,9 @@
 		5062707E2B99A51300FB63E9 /* PingFang Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Heavy.ttf"; sourceTree = "<group>"; };
 		5062707F2B99A51300FB63E9 /* PingFang Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Bold.ttf"; sourceTree = "<group>"; };
 		506270802B99A51300FB63E9 /* PingFang Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFang Regular.ttf"; sourceTree = "<group>"; };
+		CEC079532B99DB8900E5FAB1 /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		CEC079552B99DBB000E5FAB1 /* RestaurantPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPresenter.swift; sourceTree = "<group>"; };
+		CEC079572B99DCE200E5FAB1 /* RestaurantViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +112,9 @@
 		506270682B999EB300FB63E9 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				506270552B99976400FB63E9 /* ViewController.swift */,
+				CEC079502B99DB3400E5FAB1 /* Model */,
+				CEC079512B99DB3C00E5FAB1 /* View */,
+				CEC079522B99DB4A00E5FAB1 /* Presenter */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -133,6 +141,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CEC079502B99DB3400E5FAB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEC079532B99DB8900E5FAB1 /* RestaurantModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEC079512B99DB3C00E5FAB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				506270552B99976400FB63E9 /* RestaurantViewController.swift */,
+				CEC079572B99DCE200E5FAB1 /* RestaurantViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEC079522B99DB4A00E5FAB1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CEC079552B99DBB000E5FAB1 /* RestaurantPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,7 +180,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				506270872B99A6A900FB63E9 /* PBXTargetDependency */,
+				CEC0795F2B99E6E700E5FAB1 /* PBXTargetDependency */,
 			);
 			name = "Asian-cuisine-restaurant";
 			packageProductDependencies = (
@@ -181,7 +214,6 @@
 			);
 			mainGroup = 506270452B99976400FB63E9;
 			packageReferences = (
-				506270812B99A67800FB63E9 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 5062704F2B99976400FB63E9 /* Products */;
 			projectDirPath = "";
@@ -209,10 +241,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC079582B99DCE200E5FAB1 /* RestaurantViewCell.swift in Sources */,
 				5062706A2B999EE900FB63E9 /* R.swift in Sources */,
-				506270562B99976400FB63E9 /* ViewController.swift in Sources */,
+				506270562B99976400FB63E9 /* RestaurantViewController.swift in Sources */,
+				CEC079542B99DB8900E5FAB1 /* RestaurantModel.swift in Sources */,
 				506270792B999F0600FB63E9 /* UIView+AddSubviews.swift in Sources */,
 				506270522B99976400FB63E9 /* AppDelegate.swift in Sources */,
+				CEC079562B99DBB000E5FAB1 /* RestaurantPresenter.swift in Sources */,
 				506270542B99976400FB63E9 /* SceneDelegate.swift in Sources */,
 				506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */,
 			);
@@ -221,9 +256,9 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		506270872B99A6A900FB63E9 /* PBXTargetDependency */ = {
+		CEC0795F2B99E6E700E5FAB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 506270862B99A6A900FB63E9 /* SwiftLintPlugin */;
+			productRef = CEC0795E2B99E6E700E5FAB1 /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -436,9 +471,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		506270812B99A67800FB63E9 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+		CEC079592B99E3CA00E5FAB1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			repositoryURL = "https://github.com/realm/SwiftLint";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.54.0;
@@ -447,9 +482,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		506270862B99A6A900FB63E9 /* SwiftLintPlugin */ = {
+		CEC0795E2B99E6E700E5FAB1 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 506270812B99A67800FB63E9 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			package = CEC079592B99E3CA00E5FAB1 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */

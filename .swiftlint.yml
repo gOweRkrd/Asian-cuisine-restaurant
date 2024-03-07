@@ -11,6 +11,7 @@ disabled_rules:
     - todo
     - blanket_disable_command
     - switch_case_on_newline
+    - unavailable_function
 
 opt_in_rules:
 - closing_brace
@@ -122,7 +123,6 @@ opt_in_rules:
 - reduce_into
 - sorted_first_last
 - static_operator
-- unavailable_function
 - unowned_variable_capture
 - yoda_condition
 - array_init
