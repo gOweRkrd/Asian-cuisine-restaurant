@@ -11,8 +11,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let presenter = RestaurantPresenter()
-        let firstVC = RestaurantViewController(presenter: presenter)
+        let presenter = MainPresenter()
+        let firstVC = MainViewController(presenter: presenter)
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
