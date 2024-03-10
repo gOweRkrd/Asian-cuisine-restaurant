@@ -1,10 +1,10 @@
 import UIKit
 
-final class AboutAppViewController: UIViewController {
+final class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .red
     }
 }

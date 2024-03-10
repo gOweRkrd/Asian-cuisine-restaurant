@@ -15,6 +15,9 @@
 		5062706A2B999EE900FB63E9 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270692B999EE900FB63E9 /* R.swift */; };
 		506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270752B999F0600FB63E9 /* UIColor+Extension.swift */; };
 		506270792B999F0600FB63E9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270762B999F0600FB63E9 /* UIView+Extension.swift */; };
+		CE27E6D52B9DD036001FC0D4 /* SocialMediaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6D42B9DD036001FC0D4 /* SocialMediaPresenter.swift */; };
+		CE27E6D72B9DD292001FC0D4 /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6D62B9DD292001FC0D4 /* SocialMediaModel.swift */; };
+		CE27E6E02B9EDDF2001FC0D4 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6DF2B9EDDF2001FC0D4 /* ContactViewController.swift */; };
 		CEC079542B99DB8900E5FAB1 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079532B99DB8900E5FAB1 /* MainModel.swift */; };
 		CEC079562B99DBB000E5FAB1 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */; };
 		CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */; };
@@ -23,8 +26,9 @@
 		CEC0796B2B9B229400E5FAB1 /* RestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0796A2B9B229400E5FAB1 /* RestaurantsViewController.swift */; };
 		CEC0796E2B9B22E800E5FAB1 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC0796D2B9B22E800E5FAB1 /* DeliveryViewController.swift */; };
 		CEC079712B9B235700E5FAB1 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079702B9B235700E5FAB1 /* FeedbackViewController.swift */; };
-		CEC079742B9B23A600E5FAB1 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079732B9B23A600E5FAB1 /* AboutAppViewController.swift */; };
+		CEC079742B9B23A600E5FAB1 /* SocialMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079732B9B23A600E5FAB1 /* SocialMediaViewController.swift */; };
 		CEC079762B9B29AD00E5FAB1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079752B9B29AD00E5FAB1 /* String+Extension.swift */; };
+		CEC079782B9DC2D500E5FAB1 /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079772B9DC2D500E5FAB1 /* SocialMediaCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,9 @@
 		506270692B999EE900FB63E9 /* R.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		506270752B999F0600FB63E9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		506270762B999F0600FB63E9 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		CE27E6D42B9DD036001FC0D4 /* SocialMediaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaPresenter.swift; sourceTree = "<group>"; };
+		CE27E6D62B9DD292001FC0D4 /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
+		CE27E6DF2B9EDDF2001FC0D4 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		CEC079532B99DB8900E5FAB1 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
@@ -46,8 +53,9 @@
 		CEC0796A2B9B229400E5FAB1 /* RestaurantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsViewController.swift; sourceTree = "<group>"; };
 		CEC0796D2B9B22E800E5FAB1 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		CEC079702B9B235700E5FAB1 /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
-		CEC079732B9B23A600E5FAB1 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		CEC079732B9B23A600E5FAB1 /* SocialMediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaViewController.swift; sourceTree = "<group>"; };
 		CEC079752B9B29AD00E5FAB1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CEC079772B9DC2D500E5FAB1 /* SocialMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +133,8 @@
 				CEC079662B9B223F00E5FAB1 /* PromoScreen */,
 				CEC0796C2B9B22D500E5FAB1 /* DeliveryScreen */,
 				CEC0796F2B9B233E00E5FAB1 /* FeedbackScreen */,
-				CEC079722B9B239000E5FAB1 /* AboutAppScreen */,
+				CE27E6DE2B9EDDBB001FC0D4 /* AboutAppScreen */,
+				CEC079722B9B239000E5FAB1 /* SocialMediaScreen */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -138,6 +147,39 @@
 				506270762B999F0600FB63E9 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE27E6D82B9DD43D001FC0D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E6D62B9DD292001FC0D4 /* SocialMediaModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE27E6D92B9DD44E001FC0D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEC079772B9DC2D500E5FAB1 /* SocialMediaCell.swift */,
+				CEC079732B9B23A600E5FAB1 /* SocialMediaViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE27E6DA2B9DD45E001FC0D4 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E6D42B9DD036001FC0D4 /* SocialMediaPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		CE27E6DE2B9EDDBB001FC0D4 /* AboutAppScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E6DF2B9EDDF2001FC0D4 /* ContactViewController.swift */,
+			);
+			path = AboutAppScreen;
 			sourceTree = "<group>";
 		};
 		CEC079502B99DB3400E5FAB1 /* Model */ = {
@@ -215,12 +257,14 @@
 			path = FeedbackScreen;
 			sourceTree = "<group>";
 		};
-		CEC079722B9B239000E5FAB1 /* AboutAppScreen */ = {
+		CEC079722B9B239000E5FAB1 /* SocialMediaScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CEC079732B9B23A600E5FAB1 /* AboutAppViewController.swift */,
+				CE27E6D82B9DD43D001FC0D4 /* Model */,
+				CE27E6D92B9DD44E001FC0D4 /* View */,
+				CE27E6DA2B9DD45E001FC0D4 /* Presenter */,
 			);
-			path = AboutAppScreen;
+			path = SocialMediaScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +342,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE27E6D72B9DD292001FC0D4 /* SocialMediaModel.swift in Sources */,
+				CE27E6E02B9EDDF2001FC0D4 /* ContactViewController.swift in Sources */,
 				CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */,
 				CEC0796B2B9B229400E5FAB1 /* RestaurantsViewController.swift in Sources */,
 				CEC0796E2B9B22E800E5FAB1 /* DeliveryViewController.swift in Sources */,
@@ -309,10 +355,12 @@
 				506270562B99976400FB63E9 /* MainViewController.swift in Sources */,
 				CEC079542B99DB8900E5FAB1 /* MainModel.swift in Sources */,
 				506270792B999F0600FB63E9 /* UIView+Extension.swift in Sources */,
-				CEC079742B9B23A600E5FAB1 /* AboutAppViewController.swift in Sources */,
+				CEC079742B9B23A600E5FAB1 /* SocialMediaViewController.swift in Sources */,
 				506270522B99976400FB63E9 /* AppDelegate.swift in Sources */,
 				CEC079562B99DBB000E5FAB1 /* MainPresenter.swift in Sources */,
+				CEC079782B9DC2D500E5FAB1 /* SocialMediaCell.swift in Sources */,
 				506270542B99976400FB63E9 /* SceneDelegate.swift in Sources */,
+				CE27E6D52B9DD036001FC0D4 /* SocialMediaPresenter.swift in Sources */,
 				506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

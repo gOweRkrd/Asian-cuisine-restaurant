@@ -7,11 +7,13 @@ enum MainItem: String {
     case delivery = "ДОСТАВКА"
     case feedback = "ОСТАВИТЬ ОТЗЫВ"
     case aboutApp = "О ПРИЛОЖЕНИИ"
+    case socialMedia = "CОЦИАЛЬНЫЕ СЕТИ"
 }
 
 final class MainViewController: UIViewController {
     
     private var presenter: MainPresenter
+    private var socialMediaPresenter: SocialMediaPresenter
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -29,13 +31,14 @@ final class MainViewController: UIViewController {
     }()
     
     // MARK: - Initializer
-    init(presenter: MainPresenter) {
+    init(presenter: MainPresenter, socialMediaPresenter: SocialMediaPresenter) {
         self.presenter = presenter
+        self.socialMediaPresenter = socialMediaPresenter
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(R.FatalError.fatalError)
     }
     
     // MARK: - Lifecycle
@@ -46,6 +49,7 @@ final class MainViewController: UIViewController {
         presenter = MainPresenter()
         presenter.attachView(self)
         presenter.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     // MARK: - Private methods
@@ -76,6 +80,7 @@ extension MainViewController: UICollectionViewDataSource {
         let item = presenter.item(at: indexPath.row)
         cell.textLabel.text = item.text
         cell.imageView.image = item.image
+        cell.nameRestaurants.text = item.nameRestaurants
         cell.backgroundColor = R.Colors.lightGray
         return cell
     }
@@ -119,8 +124,11 @@ extension MainViewController: UICollectionViewDelegate {
             feedbackViewController.title = MainItem.feedback.rawValue.capitalizedFirstLetter()
             navigationController?.pushViewController(feedbackViewController, animated: true)
         case .aboutApp:
-            let aboutAppViewController = AboutAppViewController()
-            aboutAppViewController.title = MainItem.aboutApp.rawValue.capitalizedFirstLetter()
+            let aboutViewController = AboutViewController()
+            aboutViewController.title = MainItem.aboutApp.rawValue.capitalizedFirstLetter()
+            navigationController?.pushViewController(aboutViewController, animated: true)
+        case .socialMedia:
+            let aboutAppViewController = SocialMediaViewController(presenter: socialMediaPresenter)
             navigationController?.pushViewController(aboutAppViewController, animated: true)
         }
     }

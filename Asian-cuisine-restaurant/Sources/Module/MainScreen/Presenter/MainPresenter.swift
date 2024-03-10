@@ -19,12 +19,21 @@ final class MainPresenter {
     
     func viewDidLoad() {
         items = [
-            MainModel(text: "МЕНЮ", image: .меню),
-            MainModel(text: "АКЦИИ", image: .акции),
-            MainModel(text: "РЕСТОРАНЫ", image: .рестораны),
-            MainModel(text: "ДОСТАВКА", image: .доставка),
-            MainModel(text: "ОСТАВИТЬ ОТЗЫВ", image: .оставитьОтзыв),
-            MainModel(text: "О ПРИЛОЖЕНИИ", image: .оПриложении),
+            MainModel(
+                text: R.MainItemRestaurants.menu,
+                nameRestaurants: R.MainItemRestaurants.nameRestaurants,
+                image: .меню
+            ),
+            MainModel(text: R.MainItemRestaurants.promo, nameRestaurants: nil, image: .акции),
+            MainModel(text: R.MainItemRestaurants.restaurants, nameRestaurants: nil, image: .рестораны),
+            MainModel(text: R.MainItemRestaurants.delivery, nameRestaurants: nil, image: .доставка),
+            MainModel(text: R.MainItemRestaurants.feedback, nameRestaurants: nil, image: .оставитьОтзыв),
+            MainModel(text: R.MainItemRestaurants.aboutApp, nameRestaurants: nil, image: .рестораны),
+            MainModel(
+                text: R.MainItemRestaurants.socialMedia,
+                nameRestaurants: nil,
+                image: .оПриложении
+            )
         ]
         view?.reloadCollectionView()
     }
