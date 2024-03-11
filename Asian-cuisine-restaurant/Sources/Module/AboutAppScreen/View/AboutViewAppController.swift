@@ -136,7 +136,7 @@ final class AboutViewAppController: UIViewController {
 
 // MARK: - Setup Constrains
 private extension AboutViewAppController {
-    private func addSubviews() {
+     func addSubviews() {
         view.addSubviews([
             imageView, separatorView, versionAppLabel, numberVersionAppLabel,
             subSeparatorView, descriptionLabel, subSeparatorView2, collectionView,
@@ -144,7 +144,7 @@ private extension AboutViewAppController {
         ])
     }
     
-    private func setupConstraints() {
+     func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -240,7 +240,7 @@ extension AboutViewAppController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - RestaurantViewProtocol
+// MARK: - AboutAppViewProtocol
 extension AboutViewAppController: AboutAppViewProtocol {
     func reloadCollectionView() {
         collectionView.reloadData()

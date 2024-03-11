@@ -15,6 +15,7 @@ final class MainViewController: UIViewController {
     private var presenter: MainPresenter
     private var socialMediaPresenter: SocialMediaPresenter
     private var aboutPresenter: AboutAppPresenter
+    private var feedBackPresenter: FeedBackPresenter
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,11 +36,13 @@ final class MainViewController: UIViewController {
     init(
         presenter: MainPresenter,
         socialMediaPresenter: SocialMediaPresenter,
-        aboutPresenter: AboutAppPresenter
+        aboutPresenter: AboutAppPresenter,
+        feedBackPresenter: FeedBackPresenter
     ) {
         self.presenter = presenter
         self.socialMediaPresenter = socialMediaPresenter
         self.aboutPresenter = aboutPresenter
+        self.feedBackPresenter = feedBackPresenter
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -126,16 +129,19 @@ extension MainViewController: UICollectionViewDelegate {
             deliveryViewController.title = MainItem.delivery.rawValue.capitalized
             navigationController?.pushViewController(deliveryViewController, animated: true)
         case .feedback:
-            let feedbackViewController = FeedbackViewController()
+            let feedbackViewController = FeedbackViewController(presenter: feedBackPresenter)
             feedbackViewController.title = MainItem.feedback.rawValue.capitalizedFirstLetter()
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: R.Colors.white
+            ] 
             navigationController?.pushViewController(feedbackViewController, animated: true)
         case .aboutApp:
             let aboutViewController = AboutViewAppController(presenter: aboutPresenter)
             aboutViewController.title = MainItem.aboutApp.rawValue.capitalizedFirstLetter()
-            navigationController?.pushViewController(aboutViewController, animated: true)
             navigationController?.navigationBar.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: R.Colors.white
-            ] 
+            ]
+            navigationController?.pushViewController(aboutViewController, animated: true)
         case .socialMedia:
             let aboutAppViewController = SocialMediaViewController(presenter: socialMediaPresenter)
             navigationController?.pushViewController(aboutAppViewController, animated: true)

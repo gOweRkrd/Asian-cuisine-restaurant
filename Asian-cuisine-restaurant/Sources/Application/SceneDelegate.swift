@@ -14,10 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let presenter = MainPresenter()
         let socialMediaPresenter = SocialMediaPresenter()
         let aboutPresenter = AboutAppPresenter()
+        let feedBackPresenter = FeedBackPresenter()
         let firstVC = MainViewController(
             presenter: presenter,
             socialMediaPresenter: socialMediaPresenter, 
-            aboutPresenter: aboutPresenter
+            aboutPresenter: aboutPresenter, 
+            feedBackPresenter: feedBackPresenter
         )
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)

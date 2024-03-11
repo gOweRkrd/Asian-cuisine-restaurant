@@ -40,15 +40,28 @@ enum StringResources {
         static let rateButton = "Оценить в App Store"
         static let developerLabel = "Разработчик"
     }
-
+    
+    enum FeedbackViewController {
+        static let restaurantButton = "Ресторан"
+        static let deliviryButton = "Доставка"
+        static let nameLabel = "Имя"
+        static let nameTextField = "Введите ваше имя"
+        static let phoneNumberLabel = "Номер телефона"
+        static let phoneNumberTextField = "Введите ваш номер телефона"
+        static let numberOrderLabel = "Номер заказа"
+        static let numberOrderTextField = "Введите ваш номер заказа"
+    }
+    
     enum Colors {
         static let white = UIColor(hexString: "#FFFFFF")
         static let black = UIColor(hexString: "#000000")
         static let gray = UIColor(hexString: "#C3C4C4")
-        static let darkGray = UIColor(hexString: "#59595a")
+        static let darkGray = UIColor(hexString: "#59595A")
         static let lightGray = UIColor(hexString: "#D8D8D8")
         static let coolGray = UIColor(hexString: "#9AA19A")
         static let yellow = UIColor(hexString: "#FF9900")
+        static let tangerine = UIColor(hexString: "FB9C02")
+        static let brownishOrange = UIColor(hexString: "371F07")
     }
 }
 

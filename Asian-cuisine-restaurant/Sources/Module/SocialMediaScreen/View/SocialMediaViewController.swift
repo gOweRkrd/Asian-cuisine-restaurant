@@ -91,11 +91,11 @@ final class SocialMediaViewController: UIViewController {
 
 // MARK: - Setup Constrains
 private extension SocialMediaViewController {
-    private func addSubviews() {
+     func addSubviews() {
         view.addSubviews([imageView, socialMediaLabel, separatorView, subTitleLabel, collectionView])
     }
     
-    private func setupConstraints() {
+     func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
