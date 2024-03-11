@@ -14,6 +14,7 @@ final class MainViewController: UIViewController {
     
     private var presenter: MainPresenter
     private var socialMediaPresenter: SocialMediaPresenter
+    private var aboutPresenter: AboutAppPresenter
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,9 +32,14 @@ final class MainViewController: UIViewController {
     }()
     
     // MARK: - Initializer
-    init(presenter: MainPresenter, socialMediaPresenter: SocialMediaPresenter) {
+    init(
+        presenter: MainPresenter,
+        socialMediaPresenter: SocialMediaPresenter,
+        aboutPresenter: AboutAppPresenter
+    ) {
         self.presenter = presenter
         self.socialMediaPresenter = socialMediaPresenter
+        self.aboutPresenter = aboutPresenter
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -124,9 +130,12 @@ extension MainViewController: UICollectionViewDelegate {
             feedbackViewController.title = MainItem.feedback.rawValue.capitalizedFirstLetter()
             navigationController?.pushViewController(feedbackViewController, animated: true)
         case .aboutApp:
-            let aboutViewController = AboutViewController()
+            let aboutViewController = AboutViewAppController(presenter: aboutPresenter)
             aboutViewController.title = MainItem.aboutApp.rawValue.capitalizedFirstLetter()
             navigationController?.pushViewController(aboutViewController, animated: true)
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: R.Colors.white
+            ] 
         case .socialMedia:
             let aboutAppViewController = SocialMediaViewController(presenter: socialMediaPresenter)
             navigationController?.pushViewController(aboutAppViewController, animated: true)

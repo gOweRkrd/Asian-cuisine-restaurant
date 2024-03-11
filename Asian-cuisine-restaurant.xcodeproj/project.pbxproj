@@ -17,7 +17,10 @@
 		506270792B999F0600FB63E9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506270762B999F0600FB63E9 /* UIView+Extension.swift */; };
 		CE27E6D52B9DD036001FC0D4 /* SocialMediaPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6D42B9DD036001FC0D4 /* SocialMediaPresenter.swift */; };
 		CE27E6D72B9DD292001FC0D4 /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6D62B9DD292001FC0D4 /* SocialMediaModel.swift */; };
-		CE27E6E02B9EDDF2001FC0D4 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6DF2B9EDDF2001FC0D4 /* ContactViewController.swift */; };
+		CE27E6E02B9EDDF2001FC0D4 /* AboutViewAppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6DF2B9EDDF2001FC0D4 /* AboutViewAppController.swift */; };
+		CE27E6E22B9EF12D001FC0D4 /* AboutAppViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6E12B9EF12D001FC0D4 /* AboutAppViewCell.swift */; };
+		CE27E6E42B9EF2E7001FC0D4 /* AboutAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6E32B9EF2E7001FC0D4 /* AboutAppModel.swift */; };
+		CE27E6E62B9EF31A001FC0D4 /* AboutAppPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6E52B9EF31A001FC0D4 /* AboutAppPresenter.swift */; };
 		CEC079542B99DB8900E5FAB1 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079532B99DB8900E5FAB1 /* MainModel.swift */; };
 		CEC079562B99DBB000E5FAB1 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */; };
 		CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */; };
@@ -44,7 +47,10 @@
 		506270762B999F0600FB63E9 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CE27E6D42B9DD036001FC0D4 /* SocialMediaPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaPresenter.swift; sourceTree = "<group>"; };
 		CE27E6D62B9DD292001FC0D4 /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
-		CE27E6DF2B9EDDF2001FC0D4 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		CE27E6DF2B9EDDF2001FC0D4 /* AboutViewAppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewAppController.swift; sourceTree = "<group>"; };
+		CE27E6E12B9EF12D001FC0D4 /* AboutAppViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewCell.swift; sourceTree = "<group>"; };
+		CE27E6E32B9EF2E7001FC0D4 /* AboutAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppModel.swift; sourceTree = "<group>"; };
+		CE27E6E52B9EF31A001FC0D4 /* AboutAppPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppPresenter.swift; sourceTree = "<group>"; };
 		CEC079532B99DB8900E5FAB1 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
@@ -177,9 +183,36 @@
 		CE27E6DE2B9EDDBB001FC0D4 /* AboutAppScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CE27E6DF2B9EDDF2001FC0D4 /* ContactViewController.swift */,
+				CE27E6E72B9F0A26001FC0D4 /* Model */,
+				CE27E6E82B9F0A2D001FC0D4 /* View */,
+				CE27E6E92B9F0A38001FC0D4 /* Presenter */,
 			);
 			path = AboutAppScreen;
+			sourceTree = "<group>";
+		};
+		CE27E6E72B9F0A26001FC0D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E6E32B9EF2E7001FC0D4 /* AboutAppModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE27E6E82B9F0A2D001FC0D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E6E12B9EF12D001FC0D4 /* AboutAppViewCell.swift */,
+				CE27E6DF2B9EDDF2001FC0D4 /* AboutViewAppController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE27E6E92B9F0A38001FC0D4 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E6E52B9EF31A001FC0D4 /* AboutAppPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		CEC079502B99DB3400E5FAB1 /* Model */ = {
@@ -343,11 +376,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE27E6D72B9DD292001FC0D4 /* SocialMediaModel.swift in Sources */,
-				CE27E6E02B9EDDF2001FC0D4 /* ContactViewController.swift in Sources */,
+				CE27E6E02B9EDDF2001FC0D4 /* AboutViewAppController.swift in Sources */,
 				CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */,
 				CEC0796B2B9B229400E5FAB1 /* RestaurantsViewController.swift in Sources */,
 				CEC0796E2B9B22E800E5FAB1 /* DeliveryViewController.swift in Sources */,
 				CEC079712B9B235700E5FAB1 /* FeedbackViewController.swift in Sources */,
+				CE27E6E62B9EF31A001FC0D4 /* AboutAppPresenter.swift in Sources */,
 				CEC079762B9B29AD00E5FAB1 /* String+Extension.swift in Sources */,
 				CEC079652B9B209B00E5FAB1 /* MenuViewController.swift in Sources */,
 				CEC079682B9B226000E5FAB1 /* PromoViewController.swift in Sources */,
@@ -357,10 +391,12 @@
 				506270792B999F0600FB63E9 /* UIView+Extension.swift in Sources */,
 				CEC079742B9B23A600E5FAB1 /* SocialMediaViewController.swift in Sources */,
 				506270522B99976400FB63E9 /* AppDelegate.swift in Sources */,
+				CE27E6E22B9EF12D001FC0D4 /* AboutAppViewCell.swift in Sources */,
 				CEC079562B99DBB000E5FAB1 /* MainPresenter.swift in Sources */,
 				CEC079782B9DC2D500E5FAB1 /* SocialMediaCell.swift in Sources */,
 				506270542B99976400FB63E9 /* SceneDelegate.swift in Sources */,
 				CE27E6D52B9DD036001FC0D4 /* SocialMediaPresenter.swift in Sources */,
+				CE27E6E42B9EF2E7001FC0D4 /* AboutAppModel.swift in Sources */,
 				506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

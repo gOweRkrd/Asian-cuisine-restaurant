@@ -24,14 +24,14 @@ final class SocialMediaViewController: UIViewController {
     private var socialMediaLabel: UILabel = {
         let label = UILabel()
         label.text = MainItem.socialMedia.rawValue
-        label.textColor = UIColor.white
+        label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         return label
     }()
     
     private lazy var separatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = UIColor.lightGray
+        separatorView.backgroundColor = R.Colors.lightGray
         return separatorView
     }()
     
@@ -39,7 +39,7 @@ final class SocialMediaViewController: UIViewController {
         let label = UILabel()
         label.text = R.AboutAppViewController.subTitle
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = UIColor.gray
+        label.textColor = R.Colors.gray
         label.numberOfLines = 0
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 8
