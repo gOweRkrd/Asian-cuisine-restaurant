@@ -5,11 +5,10 @@ enum StringResources {
     enum FatalError {
         static let fatalError = "init(coder:) has not been implemented"
     }
-
-    enum AboutAppViewController {
-        // swiftlint: disable line_length
-        static let subTitle = "Подписывайтесь \n и узнайте первыми о скидках, акциях \n и конкурсах повышения квалификации \n и труда красоты!"
-        // swiftlint: enable line_length
+    
+    enum MainViewController {
+        static let identifier = "RestaurantViewCell"
+        static let fatalError = "Unable to dequeue RestaurantViewCell"
     }
     
     enum MainItemRestaurants {
@@ -33,14 +32,35 @@ enum StringResources {
         static let odnoklassniki = "odnoklassniki"
     }
     
+    enum AboutAppPresenter {
+        static let сommunication = "Для связи"
+        static let сommunicationDescription = "office@niyama.ru"
+        static let qualityDepartment = "Отдел качества"
+        static let qualityDepartmentDescription = "quality@niyama.ru"
+        static let deliveryService = "Служба доставки"
+        static let deliveryServiceDescription = "7 (495) 781-781-99"
+    }
+
     enum AboutViewAppController {
         static let versionAppLabel = "Версия приложения"
         static let numberVersionAppLabel = "1.0.0"
-        static let descriptionLabel = "Доставка суши и прочей вкусной еды от \nсети японских ресторанов Нияма. \nЗапоминает ваши предпочтения, сильно сокращает время выбора."
+        static let descriptionLabel = "Доставка суши и прочей вкусной еды от" +
+        "\nсети японских ресторанов Нияма. \nЗапоминает ваши предпочтения, сильно сокращает время выбора."
         static let rateButton = "Оценить в App Store"
         static let developerLabel = "Разработчик"
+        static let identifier = "AboutAppViewCell"
+        static let fatalError = "Unable to dequeue AboutAppViewCell"
     }
     
+    enum SocialMediaViewController {
+        static let subTitle = "Подписывайтесь\n" +
+        "и узнайте первыми о скидках, акциях\n" +
+        "и конкурсах повышения квалификации\n" +
+        "и труда красоты!"
+        static let identifier = "SocialMediaCell"
+        static let fatalError = "Unable to dequeue SocialMediaCell"
+    }
+
     enum FeedbackViewController {
         static let restaurantButton = "Ресторан"
         static let deliviryButton = "Доставка"

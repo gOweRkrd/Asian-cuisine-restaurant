@@ -12,15 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let presenter = MainPresenter()
-        let socialMediaPresenter = SocialMediaPresenter()
-        let aboutPresenter = AboutAppPresenter()
-        let feedBackPresenter = FeedBackPresenter()
-        let firstVC = MainViewController(
-            presenter: presenter,
-            socialMediaPresenter: socialMediaPresenter, 
-            aboutPresenter: aboutPresenter, 
-            feedBackPresenter: feedBackPresenter
-        )
+        let firstVC = MainViewController()
+        presenter.output = firstVC
+        firstVC.presenter = presenter
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene

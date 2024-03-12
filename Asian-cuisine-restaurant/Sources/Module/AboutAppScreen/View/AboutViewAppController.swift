@@ -1,24 +1,13 @@
 import UIKit
 
-private extension CGFloat {
-    static let imageViewHeight: CGFloat = 0.25
-    static let separatorHeight: CGFloat = 1
-    static let topAnchor: CGFloat = 16
-    static let leadingAnchor: CGFloat = 42
-    static let numberVersionAppLabelTopAnchor: CGFloat = 5
-    static let descriptionLabelTrailingAcnhor: CGFloat = 33
-    static let collectionViewHeightAnchor: CGFloat = 180
-    static let developerImageViewTopAnchor: CGFloat = 20
-}
-
 final class AboutViewAppController: UIViewController {
     
-    private var presenter: AboutAppPresenter
+    private var presenter: AboutAppPresenter?
     
     // MARK: - Ui
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .оПриложении
+        imageView.image = .aboutApp
         return imageView
     }()
     
@@ -28,7 +17,7 @@ final class AboutViewAppController: UIViewController {
         return separatorView
     }()
     
-    private var versionAppLabel: UILabel = {
+    private lazy var versionAppLabel: UILabel = {
         let label = UILabel()
         label.text = R.AboutViewAppController.versionAppLabel
         label.textColor = R.Colors.gray
@@ -36,7 +25,7 @@ final class AboutViewAppController: UIViewController {
         return label
     }()
     
-    private var numberVersionAppLabel: UILabel = {
+    private lazy var numberVersionAppLabel: UILabel = {
         let label = UILabel()
         label.text = R.AboutViewAppController.numberVersionAppLabel
         label.textColor = R.Colors.white
@@ -56,7 +45,7 @@ final class AboutViewAppController: UIViewController {
         return separatorView
     }()
     
-    private var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         label.textAlignment = .left
@@ -70,7 +59,7 @@ final class AboutViewAppController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        collectionView.register(AboutAppViewCell.self, forCellWithReuseIdentifier: "AboutAppViewCell")
+        collectionView.register(AboutAppViewCell.self, forCellWithReuseIdentifier: R.AboutViewAppController.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
@@ -97,7 +86,7 @@ final class AboutViewAppController: UIViewController {
         return separatorView
     }()
     
-    private var developerLabel: UILabel = {
+    private lazy var developerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         label.text = R.AboutViewAppController.developerLabel
@@ -105,21 +94,11 @@ final class AboutViewAppController: UIViewController {
         return label
     }()
     
-    private let developerImageView: UIImageView = {
+    private lazy var developerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .developer
         return imageView
     }()
-    
-    // MARK: - Initializer
-    init(presenter: AboutAppPresenter) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError(R.FatalError.fatalError)
-    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -129,14 +108,13 @@ final class AboutViewAppController: UIViewController {
         addSubviews()
         setupConstraints()
         presenter = AboutAppPresenter()
-        presenter.attachView(self)
-        presenter.viewDidLoad()
+        presenter?.viewDidLoad()
     }
 }
 
 // MARK: - Setup Constrains
 private extension AboutViewAppController {
-     func addSubviews() {
+    func addSubviews() {
         view.addSubviews([
             imageView, separatorView, versionAppLabel, numberVersionAppLabel,
             subSeparatorView, descriptionLabel, subSeparatorView2, collectionView,
@@ -144,70 +122,76 @@ private extension AboutViewAppController {
         ])
     }
     
-     func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: .imageViewHeight),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.imageViewHeight),
             
             separatorView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            separatorView.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            separatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            versionAppLabel.topAnchor.constraint(equalTo: separatorView.topAnchor, constant: .topAnchor),
-            versionAppLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            versionAppLabel.topAnchor.constraint(equalTo: separatorView.topAnchor, constant: Constants.topAnchor),
+            versionAppLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
-            numberVersionAppLabel.topAnchor.constraint(equalTo: separatorView.topAnchor, constant: .topAnchor),
+            numberVersionAppLabel.topAnchor.constraint(equalTo: separatorView.topAnchor, constant: Constants.topAnchor),
             numberVersionAppLabel.leadingAnchor.constraint(
                 equalTo: versionAppLabel.trailingAnchor,
-                constant: .numberVersionAppLabelTopAnchor
+                constant: Constants.numberVersionAppLabelTopAnchor
             ),
             
-            subSeparatorView.topAnchor.constraint(equalTo: versionAppLabel.bottomAnchor, constant: .topAnchor),
-            subSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            subSeparatorView.topAnchor.constraint(equalTo: versionAppLabel.bottomAnchor, constant: Constants.topAnchor),
+            subSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             subSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            subSeparatorView.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            subSeparatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            descriptionLabel.topAnchor.constraint(equalTo: subSeparatorView.bottomAnchor, constant: .topAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            descriptionLabel.topAnchor.constraint(
+                equalTo: subSeparatorView.bottomAnchor,
+                constant: Constants.topAnchor
+            ),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.descriptionLabelTrailingAcnhor
+                constant: -Constants.descriptionLabelTrailingAcnhor
             ),
             
-            subSeparatorView2.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .topAnchor),
-            subSeparatorView2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            subSeparatorView2.topAnchor.constraint(
+                equalTo: descriptionLabel.bottomAnchor,
+                constant: Constants.topAnchor
+            ),
+            subSeparatorView2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             subSeparatorView2.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            subSeparatorView2.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            subSeparatorView2.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            collectionView.topAnchor.constraint(equalTo: subSeparatorView2.bottomAnchor, constant: .topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: subSeparatorView2.bottomAnchor, constant: Constants.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: .collectionViewHeightAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: Constants.collectionViewHeightAnchor),
             
-            subSeparatorView3.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: .topAnchor),
-            subSeparatorView3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            subSeparatorView3.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: Constants.topAnchor),
+            subSeparatorView3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             subSeparatorView3.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            subSeparatorView3.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            subSeparatorView3.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            rateButton.topAnchor.constraint(equalTo: subSeparatorView3.bottomAnchor, constant: .topAnchor),
-            rateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            rateButton.topAnchor.constraint(equalTo: subSeparatorView3.bottomAnchor, constant: Constants.topAnchor),
+            rateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
-            subSeparatorView4.topAnchor.constraint(equalTo: rateButton.bottomAnchor, constant: .topAnchor),
-            subSeparatorView4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            subSeparatorView4.topAnchor.constraint(equalTo: rateButton.bottomAnchor, constant: Constants.topAnchor),
+            subSeparatorView4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             subSeparatorView4.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            subSeparatorView4.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            subSeparatorView4.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            developerLabel.topAnchor.constraint(equalTo: subSeparatorView4.topAnchor, constant: .topAnchor),
-            developerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            developerLabel.topAnchor.constraint(equalTo: subSeparatorView4.topAnchor, constant: Constants.topAnchor),
+            developerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
             developerImageView.topAnchor.constraint(
                 equalTo: developerLabel.topAnchor,
-                constant: .developerImageViewTopAnchor
+                constant: Constants.developerImageViewTopAnchor
             ),
-            developerImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor)
+            developerImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor)
         ])
     }
 }
@@ -215,20 +199,20 @@ private extension AboutViewAppController {
 // MARK: - UICollectionViewDataSource
 extension AboutViewAppController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.numberOfItems()
+        presenter?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "AboutAppViewCell",
+            withReuseIdentifier: R.AboutViewAppController.identifier,
             for: indexPath
         ) as? AboutAppViewCell else {
-            fatalError("Unable to dequeue AboutAppViewCell")
+            fatalError(R.AboutViewAppController.fatalError)
         }
         
-        let item = presenter.item(at: indexPath.row)
-        cell.titleLabel.text = item.title
-        cell.descriptionLabel.text = item.desciption
+        let item = presenter?.item(at: indexPath.row)
+        cell.titleLabel.text = item?.title
+        cell.descriptionLabel.text = item?.desciption
         return cell
     }
 }
@@ -240,14 +224,26 @@ extension AboutViewAppController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - AboutAppViewProtocol
-extension AboutViewAppController: AboutAppViewProtocol {
+// MARK: - AboutAppProtocolOutput
+extension AboutViewAppController: AboutAppProtocolOutput {
     func reloadCollectionView() {
         collectionView.reloadData()
     }
     
     @objc
     func rateButtonTapped() {
-        presenter.rateButtonTapped()
+        presenter?.rateButtonTapped()
     }
+}
+
+// MARK: - Constants
+private struct Constants {
+    static let imageViewHeight: CGFloat = 0.25
+    static let separatorHeight: CGFloat = 1
+    static let topAnchor: CGFloat = 16
+    static let leadingAnchor: CGFloat = 42
+    static let numberVersionAppLabelTopAnchor: CGFloat = 5
+    static let descriptionLabelTrailingAcnhor: CGFloat = 33
+    static let collectionViewHeightAnchor: CGFloat = 180
+    static let developerImageViewTopAnchor: CGFloat = 20
 }

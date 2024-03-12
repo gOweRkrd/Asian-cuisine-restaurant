@@ -27,7 +27,7 @@ private enum SocialMedia: String {
 
 final class SocialMediaCell: UICollectionViewCell {
     
-    let imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -55,8 +55,8 @@ final class SocialMediaCell: UICollectionViewCell {
     
     @objc
     private func openSocialMedia() {
-        guard let image = imageView.image, 
-                let socialMedia = SocialMedia(rawValue: image.accessibilityIdentifier ?? "") else {
+        guard let socialMediaString = imageView.accessibilityIdentifier,
+              let socialMedia = SocialMedia(rawValue: socialMediaString) else {
             return
         }
         

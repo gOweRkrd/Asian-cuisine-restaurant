@@ -1,27 +1,17 @@
 import UIKit
 
-private extension CGFloat {
-    static let subTitleLabelLeadingTrailingSize: CGFloat = 30
-    static let subTitleTopAnchor: CGFloat = 104
-    static let colletionViewLeadingTrailingSize: CGFloat = 42
-    static let colletionViewTopAnchor: CGFloat = 45
-    static let colletionViewHeight: CGFloat = 50
-    static let separatorHeight: CGFloat = 1
-    static let imageViewHeight: CGFloat = 0.35
-}
-
 final class SocialMediaViewController: UIViewController {
     
-    private var presenter: SocialMediaPresenter
+    private var presenter: SocialMediaPresenter?
     
     // MARK: - Ui
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .фонОПриложении
+        imageView.image = .backgraundApp
         return imageView
     }()
     
-    private var socialMediaLabel: UILabel = {
+    private lazy var socialMediaLabel: UILabel = {
         let label = UILabel()
         label.text = MainItem.socialMedia.rawValue
         label.textColor = R.Colors.white
@@ -35,9 +25,9 @@ final class SocialMediaViewController: UIViewController {
         return separatorView
     }()
     
-    private var subTitleLabel: UILabel = {
+    private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = R.AboutAppViewController.subTitle
+        label.text = R.SocialMediaViewController.subTitle
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         label.textColor = R.Colors.gray
         label.numberOfLines = 0
@@ -59,21 +49,14 @@ final class SocialMediaViewController: UIViewController {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        collectionView.register(SocialMediaCell.self, forCellWithReuseIdentifier: "SocialMediaCell")
+        collectionView.register(
+            SocialMediaCell.self,
+            forCellWithReuseIdentifier: R.SocialMediaViewController.identifier
+        )
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
     }()
-    
-    // MARK: - Initializer
-    init(presenter: SocialMediaPresenter) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError(R.FatalError.fatalError)
-    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -82,8 +65,7 @@ final class SocialMediaViewController: UIViewController {
         view.backgroundColor = R.Colors.black
         navigationController?.navigationBar.tintColor = R.Colors.white
         presenter = SocialMediaPresenter()
-        presenter.attachView(self)
-        presenter.viewDidLoad()
+        presenter?.viewDidLoad()
         addSubviews()
         setupConstraints()
     }
@@ -91,16 +73,16 @@ final class SocialMediaViewController: UIViewController {
 
 // MARK: - Setup Constrains
 private extension SocialMediaViewController {
-     func addSubviews() {
+    func addSubviews() {
         view.addSubviews([imageView, socialMediaLabel, separatorView, subTitleLabel, collectionView])
     }
     
-     func setupConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: .imageViewHeight),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Constants.imageViewHeight),
             
             socialMediaLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             socialMediaLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
@@ -108,28 +90,34 @@ private extension SocialMediaViewController {
             separatorView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             separatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            separatorView.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            separatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            subTitleLabel.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: .subTitleTopAnchor),
+            subTitleLabel.topAnchor.constraint(
+                equalTo: separatorView.bottomAnchor,
+                constant: Constants.subTitleTopAnchor
+            ),
             subTitleLabel.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: .subTitleLabelLeadingTrailingSize
+                constant: Constants.subTitleLabelLeadingTrailingSize
             ),
             subTitleLabel.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.subTitleLabelLeadingTrailingSize
+                constant: -Constants.subTitleLabelLeadingTrailingSize
             ),
             
-            collectionView.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: .colletionViewTopAnchor),
+            collectionView.topAnchor.constraint(
+                equalTo: subTitleLabel.bottomAnchor,
+                constant: Constants.colletionViewTopAnchor
+            ),
             collectionView.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: .colletionViewLeadingTrailingSize
+                constant: Constants.colletionViewLeadingTrailingSize
             ),
             collectionView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.colletionViewLeadingTrailingSize
+                constant: -Constants.colletionViewLeadingTrailingSize
             ),
-            collectionView.heightAnchor.constraint(equalToConstant: .colletionViewHeight)
+            collectionView.heightAnchor.constraint(equalToConstant: Constants.colletionViewHeight)
         ])
     }
 }
@@ -137,20 +125,22 @@ private extension SocialMediaViewController {
 // MARK: - UICollectionViewDataSource
 extension SocialMediaViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.numberOfItems()
+        presenter?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "SocialMediaCell",
+            withReuseIdentifier: R.SocialMediaViewController.identifier,
             for: indexPath
         ) as? SocialMediaCell else {
-            fatalError("Unable to dequeue SocialMediaCell")
+            fatalError(R.SocialMediaViewController.fatalError)
         }
         
-        let socialBrend = presenter.item(at: indexPath.row).socialBrend
-        if let image = UIImage(named: socialBrend) {
+        let socialBrend = presenter?.item(at: indexPath.row).socialBrend
+        if let image = UIImage(named: socialBrend ?? "") {
             cell.imageView.image = image
+            // Set accessibilityIdentifier to the raw value of SocialMedia enum
+            cell.imageView.accessibilityIdentifier = socialBrend
         }
         return cell
     }
@@ -163,9 +153,20 @@ extension SocialMediaViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - RestaurantViewProtocol
-extension SocialMediaViewController: SocialMediaViewProtocol {
+// MARK: - SocialMediaProtocolOutput
+extension SocialMediaViewController: SocialMediaProtocolOutput {
     func reloadCollectionView() {
         collectionView.reloadData()
     }
+}
+
+// MARK: - Constants
+private struct Constants {
+    static let subTitleLabelLeadingTrailingSize: CGFloat = 30
+    static let subTitleTopAnchor: CGFloat = 104
+    static let colletionViewLeadingTrailingSize: CGFloat = 42
+    static let colletionViewTopAnchor: CGFloat = 45
+    static let colletionViewHeight: CGFloat = 50
+    static let separatorHeight: CGFloat = 1
+    static let imageViewHeight: CGFloat = 0.35
 }

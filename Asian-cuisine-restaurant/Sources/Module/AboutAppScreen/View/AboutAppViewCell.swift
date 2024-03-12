@@ -1,19 +1,15 @@
 import UIKit
 
-private extension CGFloat {
-    static let descriptionLabelTopAnchor: CGFloat = 25
-}
-
 final class AboutAppViewCell: UICollectionViewCell {
     
-    let titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.coolGray
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         return label
     }()
     
-    var descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -43,8 +39,16 @@ private extension AboutAppViewCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: .descriptionLabelTopAnchor),
+            descriptionLabel.topAnchor.constraint(
+                equalTo: titleLabel.topAnchor,
+                constant: Constants.descriptionLabelTopAnchor
+            ),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         ])
     }
+}
+
+// MARK: - Constants
+private struct Constants {
+    static let descriptionLabelTopAnchor: CGFloat = 25
 }

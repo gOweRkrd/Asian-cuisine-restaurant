@@ -1,20 +1,23 @@
 import Foundation
 
-protocol SocialMediaViewProtocol: AnyObject {
+protocol SocialMediaViewProtocolInput: AnyObject {
+    func viewDidLoad()
+    func detachView()
+    func item(at index: Int) -> SocialMediaModel
+    func numberOfItems() -> Int
+}
+
+protocol SocialMediaProtocolOutput: AnyObject {
     func reloadCollectionView()
 }
 
-final class SocialMediaPresenter {
+final class SocialMediaPresenter: SocialMediaViewProtocolInput {
     
-    weak var view: SocialMediaViewProtocol?
+    weak var output: SocialMediaProtocolOutput?
     private var items: [SocialMediaModel] = []
     
-    func attachView(_ view: SocialMediaViewProtocol) {
-        self.view = view
-    }
-    
     func detachView() {
-        self.view = nil
+        self.output = nil
     }
     
     func viewDidLoad() {
@@ -25,7 +28,7 @@ final class SocialMediaPresenter {
             SocialMediaModel(socialBrend: R.SocialMedia.instagram),
             SocialMediaModel(socialBrend: R.SocialMedia.odnoklassniki)
         ]
-        view?.reloadCollectionView()
+        output?.reloadCollectionView()
     }
     
     func numberOfItems() -> Int {

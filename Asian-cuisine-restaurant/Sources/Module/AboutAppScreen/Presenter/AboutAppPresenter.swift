@@ -1,30 +1,42 @@
 import UIKit
 
-protocol AboutAppViewProtocol: AnyObject {
+protocol AboutAppViewProtocolInput: AnyObject {
+    func viewDidLoad()
+    func detachView()
+    func item(at index: Int) -> AboutAppModel
+    func numberOfItems() -> Int
+}
+
+protocol AboutAppProtocolOutput: AnyObject {
     func reloadCollectionView()
     func rateButtonTapped()
 }
 
-final class AboutAppPresenter {
+final class AboutAppPresenter: AboutAppViewProtocolInput {
     
-    weak var view: AboutAppViewProtocol?
+    weak var output: AboutAppProtocolOutput?
     private var items: [AboutAppModel] = []
     
-    func attachView(_ view: AboutAppViewProtocol) {
-        self.view = view
-    }
-    
     func detachView() {
-        self.view = nil
+        self.output = nil
     }
     
     func viewDidLoad() {
         items = [
-            AboutAppModel(title: "Для связи", desciption: "office@niyama.ru"),
-            AboutAppModel(title: "Отдел качества", desciption: "quality@niyama.ru"),
-            AboutAppModel(title: "Служба доставки", desciption: "+7 (495) 781-781-9")
+            AboutAppModel(
+                title: R.AboutAppPresenter.сommunication,
+                desciption: R.AboutAppPresenter.сommunicationDescription
+            ),
+            AboutAppModel(
+                title: R.AboutAppPresenter.qualityDepartment,
+                desciption: R.AboutAppPresenter.qualityDepartmentDescription
+            ),
+            AboutAppModel(
+                title: R.AboutAppPresenter.deliveryService,
+                desciption: R.AboutAppPresenter.deliveryServiceDescription
+            )
         ]
-        view?.reloadCollectionView()
+        output?.reloadCollectionView()
     }
     
     func numberOfItems() -> Int {

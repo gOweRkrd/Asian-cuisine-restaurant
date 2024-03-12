@@ -2,27 +2,30 @@ import UIKit
 
 final class MainViewCell: UICollectionViewCell {
 
-    let textLabel: UILabel = {
+    lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
-    var nameRestaurants: UILabel = {
+    lazy var nameRestaurants: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 40, weight: .medium)
         return label
     }()
     
-    let imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -41,22 +44,20 @@ final class MainViewCell: UICollectionViewCell {
 // MARK: - Setup Constrains
 private extension MainViewCell {
     func addSubView() {
-        stackView = UIStackView(arrangedSubviews: [nameRestaurants, textLabel])
-        stackView.alignment = .center
-        stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.addArrangedSubview(nameRestaurants)
+        stackView.addArrangedSubview(textLabel)
         contentView.addSubviews([imageView, stackView])
     }
     
     func setupConstraints() {
-          NSLayoutConstraint.activate([
-              imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-              imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-              imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-              imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-              
-              stackView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-              stackView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
-          ])
-      }
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            stackView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+        ])
+    }
 }

@@ -1,21 +1,8 @@
 import UIKit
 
-private extension CGFloat {
-    static let separatorHeight: CGFloat = 1
-    static let leadingAnchor: CGFloat = 26
-    static let separatorViewLTopAnchor: CGFloat = 12
-    static let separatorViewLTrailingAnchor: CGFloat = 24
-    static let textFeildTopAnchor: CGFloat = 10
-    static let buttonTopAnchor: CGFloat = 8
-    static let restaurantButtonLeadingButton: CGFloat = 65
-    static let deliviryButtonTrailingButton: CGFloat = 31
-    static let labelTopAnchor: CGFloat = 25
-    static let nameLabelTopAcnhor: CGFloat = 32
-}
-
 final class FeedbackViewController: UIViewController {
     
-    private var presenter: FeedBackPresenter
+    private var presenter: FeedBackPresenter?
     
     // MARK: - Ui
     private lazy var restaurantButton: UIButton = {
@@ -49,7 +36,7 @@ final class FeedbackViewController: UIViewController {
         return button
     }()
     
-    private var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = R.FeedbackViewController.nameLabel
         label.textColor = R.Colors.coolGray
@@ -57,7 +44,7 @@ final class FeedbackViewController: UIViewController {
         return label
     }()
     
-    private var nameTextField: UITextField = {
+    private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = R.FeedbackViewController.nameTextField
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
@@ -76,7 +63,7 @@ final class FeedbackViewController: UIViewController {
         return separatorView
     }()
     
-    private var phoneNumberLabel: UILabel = {
+    private lazy var phoneNumberLabel: UILabel = {
         let label = UILabel()
         label.text = R.FeedbackViewController.phoneNumberLabel
         label.textColor = R.Colors.coolGray
@@ -84,7 +71,7 @@ final class FeedbackViewController: UIViewController {
         return label
     }()
     
-    private var phoneNumberTextField: UITextField = {
+    private lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = R.FeedbackViewController.phoneNumberTextField
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
@@ -103,7 +90,7 @@ final class FeedbackViewController: UIViewController {
         return separatorView
     }()
     
-    private var numberOrderLabel: UILabel = {
+    private lazy var numberOrderLabel: UILabel = {
         let label = UILabel()
         label.text = R.FeedbackViewController.numberOrderLabel
         label.textColor = R.Colors.coolGray
@@ -111,7 +98,7 @@ final class FeedbackViewController: UIViewController {
         return label
     }()
     
-    private var numberOrderTextField: UITextField = {
+    private lazy var numberOrderTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = R.FeedbackViewController.numberOrderTextField
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
@@ -140,25 +127,13 @@ final class FeedbackViewController: UIViewController {
         navigationItem.rightBarButtonItem = basketButton
     }
     
-    // MARK: - Initializer
-    init(presenter: FeedBackPresenter) {
-        self.presenter = presenter
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError(R.FatalError.fatalError)
-    }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.tintColor = R.Colors.white
         view.backgroundColor = R.Colors.black
+        presenter?.viewDidLoad()
         setupNavigationBar()
-        presenter = FeedBackPresenter()
-        presenter.attachView(self)
         addSubviews()
         setupConstraints()
         setupTextField()
@@ -203,104 +178,130 @@ private extension FeedbackViewController {
         NSLayoutConstraint.activate([
             restaurantButton.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: .buttonTopAnchor
+                constant: Constants.buttonTopAnchor
             ),
             restaurantButton.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: .restaurantButtonLeadingButton
+                constant: Constants.restaurantButtonLeadingButton
             ),
             
             deliviryButton.topAnchor.constraint(
                 equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: .buttonTopAnchor
+                constant: Constants.buttonTopAnchor
             ),
             deliviryButton.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.deliviryButtonTrailingButton
+                constant: -Constants.deliviryButtonTrailingButton
             ),
             
-            nameLabel.topAnchor.constraint(equalTo: restaurantButton.bottomAnchor, constant: .nameLabelTopAcnhor),
-            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            nameLabel.topAnchor.constraint(
+                equalTo: restaurantButton.bottomAnchor,
+                constant: Constants.nameLabelTopAcnhor
+            ),
+            nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
-            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: .textFeildTopAnchor),
-            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.textFeildTopAnchor),
+            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
             nameSeparatorView.topAnchor.constraint(
                 equalTo: nameTextField.bottomAnchor,
-                constant: .separatorViewLTopAnchor
+                constant: Constants.separatorViewLTopAnchor
             ),
-            nameSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            nameSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             nameSeparatorView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.separatorViewLTrailingAnchor
+                constant: -Constants.separatorViewLTrailingAnchor
             ),
-            nameSeparatorView.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            nameSeparatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-            phoneNumberLabel.topAnchor.constraint(equalTo: nameSeparatorView.bottomAnchor, constant: .labelTopAnchor),
-            phoneNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            phoneNumberLabel.topAnchor.constraint(
+                equalTo: nameSeparatorView.bottomAnchor,
+                constant: Constants.labelTopAnchor
+            ),
+            phoneNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
             phoneNumberTextField.topAnchor.constraint(
                 equalTo: phoneNumberLabel.bottomAnchor,
-                constant: .textFeildTopAnchor
+                constant: Constants.textFeildTopAnchor
             ),
-            phoneNumberTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            phoneNumberTextField.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor, constant: Constants.leadingAnchor
+            ),
             
             phoneNumberSeparatorView.topAnchor.constraint(
                 equalTo: phoneNumberTextField.bottomAnchor,
-                constant: .separatorViewLTopAnchor
+                constant: Constants.separatorViewLTopAnchor
             ),
-            phoneNumberSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            phoneNumberSeparatorView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor, constant: Constants.leadingAnchor
+            ),
             phoneNumberSeparatorView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.separatorViewLTrailingAnchor
+                constant: -Constants.separatorViewLTrailingAnchor
             ),
-            phoneNumberSeparatorView.heightAnchor.constraint(equalToConstant: .separatorHeight),
+            phoneNumberSeparatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
             numberOrderLabel.topAnchor.constraint(
                 equalTo: phoneNumberSeparatorView.bottomAnchor,
-                constant: .labelTopAnchor
+                constant: Constants.labelTopAnchor
             ),
-            numberOrderLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            numberOrderLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
             
             numberOrderTextField.topAnchor.constraint(
                 equalTo: numberOrderLabel.bottomAnchor,
-                constant: .textFeildTopAnchor
+                constant: Constants.textFeildTopAnchor
             )
             ,
-            numberOrderTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            numberOrderTextField.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.leadingAnchor
+            ),
             
             numberOrderSeparatorView.topAnchor.constraint(
                 equalTo: numberOrderTextField.bottomAnchor,
-                constant: .separatorViewLTopAnchor
+                constant: Constants.separatorViewLTopAnchor
             ),
-            numberOrderSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            numberOrderSeparatorView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor, 
+                constant: Constants.leadingAnchor
+            ),
             numberOrderSeparatorView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
-                constant: -.separatorViewLTrailingAnchor
+                constant: -Constants.separatorViewLTrailingAnchor
             ),
-            numberOrderSeparatorView.heightAnchor.constraint(equalToConstant: .separatorHeight)
+            numberOrderSeparatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight)
         ])
     }
 }
 
-// MARK: - FeedBackActionProtocol
-extension FeedbackViewController: FeedBackViewProtocol {}
-
-// MARK: - FeedBackViewProtocol
-extension FeedbackViewController: FeedBackActionProtocol {
-    
+// MARK: - FeedBackProtocolOutput
+extension FeedbackViewController: FeedBackProtocolOutput {
     @objc
     func cartButtonTapped() {
-        presenter.cartButtonTapped()
+        presenter?.cartButtonTapped()
     }
     
     @objc
     func restaurantButtonTapped() {
-        presenter.restaurantButtonTapped()
+        presenter?.restaurantButtonTapped()
     }
     
     @objc
     func deliviryButtonTapped() {
-        presenter.deliviryButtonTapped()
+        presenter?.deliviryButtonTapped()
     }
+}
+
+// MARK: - Constants
+private struct Constants {
+    static let separatorHeight: CGFloat = 1
+    static let leadingAnchor: CGFloat = 26
+    static let separatorViewLTopAnchor: CGFloat = 12
+    static let separatorViewLTrailingAnchor: CGFloat = 24
+    static let textFeildTopAnchor: CGFloat = 10
+    static let buttonTopAnchor: CGFloat = 8
+    static let restaurantButtonLeadingButton: CGFloat = 65
+    static let deliviryButtonTrailingButton: CGFloat = 31
+    static let labelTopAnchor: CGFloat = 25
+    static let nameLabelTopAcnhor: CGFloat = 32
 }

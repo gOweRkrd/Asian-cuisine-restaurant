@@ -1,25 +1,20 @@
 import Foundation
 
-protocol FeedBackViewProtocol: AnyObject {}
+protocol FeedBackViewProtocolInput: AnyObject {
+    func viewDidLoad()
+}
 
-protocol FeedBackActionProtocol: AnyObject {
+protocol FeedBackProtocolOutput: AnyObject {
     func cartButtonTapped()
     func restaurantButtonTapped()
     func deliviryButtonTapped()
 }
 
-final class FeedBackPresenter {
+final class FeedBackPresenter: FeedBackViewProtocolInput {
     
-    weak var view: FeedBackViewProtocol?
-    weak var action: FeedBackActionProtocol?
+    weak var output: FeedBackProtocolOutput?
     
-    func attachView(_ view: FeedBackViewProtocol) {
-        self.view = view
-    }
-    
-    func detachView() {
-        self.view = nil
-    }
+    func viewDidLoad() {}
     
     func cartButtonTapped() {
         print(#function)

@@ -12,10 +12,7 @@ enum MainItem: String {
 
 final class MainViewController: UIViewController {
     
-    private var presenter: MainPresenter
-    private var socialMediaPresenter: SocialMediaPresenter
-    private var aboutPresenter: AboutAppPresenter
-    private var feedBackPresenter: FeedBackPresenter
+    var presenter: MainViewProtocolInput?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,36 +25,15 @@ final class MainViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = R.Colors.white
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: "RestaurantViewCell")
+        collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: R.MainViewController.identifier)
         return collectionView
     }()
-    
-    // MARK: - Initializer
-    init(
-        presenter: MainPresenter,
-        socialMediaPresenter: SocialMediaPresenter,
-        aboutPresenter: AboutAppPresenter,
-        feedBackPresenter: FeedBackPresenter
-    ) {
-        self.presenter = presenter
-        self.socialMediaPresenter = socialMediaPresenter
-        self.aboutPresenter = aboutPresenter
-        self.feedBackPresenter = feedBackPresenter
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError(R.FatalError.fatalError)
-    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
-        presenter = MainPresenter()
-        presenter.attachView(self)
-        presenter.viewDidLoad()
+        presenter?.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -76,20 +52,20 @@ final class MainViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter.numberOfItems()
+        presenter?.numberOfItems() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "RestaurantViewCell",
+            withReuseIdentifier: R.MainViewController.identifier,
             for: indexPath
         ) as? MainViewCell else {
-            fatalError("Unable to dequeue RestaurantViewCell")
+            fatalError(R.MainViewController.fatalError)
         }
-        let item = presenter.item(at: indexPath.row)
-        cell.textLabel.text = item.text
-        cell.imageView.image = item.image
-        cell.nameRestaurants.text = item.nameRestaurants
+        let item = presenter?.item(at: indexPath.row)
+        cell.textLabel.text = item?.text
+        cell.imageView.image = item?.image
+        cell.nameRestaurants.text = item?.nameRestaurants
         cell.backgroundColor = R.Colors.lightGray
         return cell
     }
@@ -98,8 +74,8 @@ extension MainViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let item = presenter.item(at: indexPath.row)
-        let imageAspectRatio = item.image.size.height / item.image.size.width
+        let item = presenter?.item(at: indexPath.row)
+        let imageAspectRatio = (item?.image.size.height ?? 0) / (item?.image.size.width ?? 0)
         let cellWidth = collectionView.bounds.width
         let cellHeight = cellWidth * imageAspectRatio
         return CGSize(width: cellWidth, height: cellHeight)
@@ -109,8 +85,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = presenter.item(at: indexPath.row)
-        guard let menuItem = MainItem(rawValue: item.text) else { return }
+        let item = presenter?.item(at: indexPath.row)
+        guard let menuItem = MainItem(rawValue: item?.text ?? "") else { return }
         switch menuItem {
         case .menu:
             let menuViewController = MenuViewController()
@@ -129,28 +105,28 @@ extension MainViewController: UICollectionViewDelegate {
             deliveryViewController.title = MainItem.delivery.rawValue.capitalized
             navigationController?.pushViewController(deliveryViewController, animated: true)
         case .feedback:
-            let feedbackViewController = FeedbackViewController(presenter: feedBackPresenter)
+            let feedbackViewController = FeedbackViewController()
             feedbackViewController.title = MainItem.feedback.rawValue.capitalizedFirstLetter()
             navigationController?.navigationBar.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: R.Colors.white
-            ] 
+            ]
             navigationController?.pushViewController(feedbackViewController, animated: true)
         case .aboutApp:
-            let aboutViewController = AboutViewAppController(presenter: aboutPresenter)
+            let aboutViewController = AboutViewAppController()
             aboutViewController.title = MainItem.aboutApp.rawValue.capitalizedFirstLetter()
             navigationController?.navigationBar.titleTextAttributes = [
                 NSAttributedString.Key.foregroundColor: R.Colors.white
             ]
             navigationController?.pushViewController(aboutViewController, animated: true)
         case .socialMedia:
-            let aboutAppViewController = SocialMediaViewController(presenter: socialMediaPresenter)
+            let aboutAppViewController = SocialMediaViewController()
             navigationController?.pushViewController(aboutAppViewController, animated: true)
         }
     }
 }
 
-// MARK: - RestaurantViewProtocol
-extension MainViewController: MainViewProtocol {
+// MARK: - MainViewProtocolOutput
+extension MainViewController: MainViewProtocolOutput {
     func reloadCollectionView() {
         collectionView.reloadData()
     }
