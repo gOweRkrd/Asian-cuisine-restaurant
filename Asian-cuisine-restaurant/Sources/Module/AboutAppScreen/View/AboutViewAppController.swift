@@ -62,6 +62,7 @@ final class AboutViewAppController: UIViewController {
         collectionView.register(AboutAppViewCell.self, forCellWithReuseIdentifier: R.AboutViewAppController.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     

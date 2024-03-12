@@ -164,7 +164,7 @@ extension SocialMediaViewController: SocialMediaProtocolOutput {
 private struct Constants {
     static let subTitleLabelLeadingTrailingSize: CGFloat = 30
     static let subTitleTopAnchor: CGFloat = 104
-    static let colletionViewLeadingTrailingSize: CGFloat = 42
+    static let colletionViewLeadingTrailingSize: CGFloat = 40
     static let colletionViewTopAnchor: CGFloat = 45
     static let colletionViewHeight: CGFloat = 50
     static let separatorHeight: CGFloat = 1

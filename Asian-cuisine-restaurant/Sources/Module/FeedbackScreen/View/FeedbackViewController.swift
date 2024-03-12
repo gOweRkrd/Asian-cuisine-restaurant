@@ -27,7 +27,12 @@ final class FeedbackViewController: UIViewController {
         button.layer.cornerRadius = 17
         button.layer.borderWidth = 1.0
         button.layer.borderColor = R.Colors.tangerine.cgColor
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 49, bottom: 10, right: 49)
+        button.contentEdgeInsets = UIEdgeInsets(
+            top: Constants.deliviryButtonTopBottomInternalAnchor,
+            left: Constants.deliviryButtonLeftRightInternalAnchor,
+            bottom: Constants.deliviryButtonTopBottomInternalAnchor,
+            right: Constants.deliviryButtonLeftRightInternalAnchor
+        )
         button.addTarget(
             self,
             action: #selector(deliviryButtonTapped),
@@ -117,6 +122,88 @@ final class FeedbackViewController: UIViewController {
         return separatorView
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 3
+        collectionView.backgroundColor = .clear
+        collectionView.register(FeedBackViewCell.self, forCellWithReuseIdentifier: R.FeedbackViewController.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
+    private lazy var plusButton: UIButton = {
+        let button = UIButton(type: .system)
+        let plusImage = UIImage(systemName: "plus.circle")
+        button.setImage(plusImage, for: .normal)
+        let scaledImage = plusImage?.withRenderingMode(.alwaysTemplate)
+            .scaled(to: CGSize(
+            width: Constants.plusButtonImageSize,
+            height: Constants.plusButtonImageSize
+        ))
+        button.setImage(scaledImage, for: .normal)
+        button.tintColor = R.Colors.tangerine
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        button.setTitleColor(R.Colors.yellow, for: .normal)
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var addPhotoLabel: UILabel = {
+        let label = UILabel()
+        label.text = R.FeedbackViewController.addPhotoLabel
+        label.textColor = R.Colors.tangerine
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        return label
+    }()
+    
+    private lazy var feedBackLabel: UILabel = {
+        let label = UILabel()
+        label.text = R.FeedbackViewController.feedBackLabel
+        label.textColor = R.Colors.coolGray
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        return label
+    }()
+    
+    private lazy var subDescription: UILabel = {
+        let label = UILabel()
+        label.text = R.FeedbackViewController.subDescription
+        label.textColor = R.Colors.white
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        return label
+    }()
+    
+    private lazy var separatorView: UIView = {
+        let separatorView = UIView()
+        separatorView.backgroundColor = R.Colors.darkGray
+        return separatorView
+    }()
+    
+    private lazy var sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle(R.FeedbackViewController.sendButton, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        button.setTitleColor(R.Colors.white, for: .normal)
+        button.backgroundColor = R.Colors.darkOrange
+        button.layer.cornerRadius = 22
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = R.Colors.tangerine.cgColor
+        button.contentEdgeInsets = UIEdgeInsets(
+            top: Constants.sendButtonTopBottomInternalAnchor,
+            left: Constants.sendButtonLeftRightInternalAnchor,
+            bottom: Constants.sendButtonTopBottomInternalAnchor,
+            right: Constants.sendButtonLeftRightInternalAnchor
+        )
+        button.addTarget(
+            self,
+            action: #selector(sendButtonTapped),
+            for: .touchUpInside
+        )
+        return button
+    }()
+    
     private func setupNavigationBar() {
         let basketButton = UIBarButtonItem(
             image: UIImage(resource: .basket),
@@ -132,11 +219,17 @@ final class FeedbackViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = R.Colors.white
         view.backgroundColor = R.Colors.black
+        presenter = FeedBackPresenter()
         presenter?.viewDidLoad()
         setupNavigationBar()
         addSubviews()
         setupConstraints()
         setupTextField()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter?.updateCellVisibility(in: collectionView)
     }
     
     // MARK: - Private methods
@@ -164,13 +257,49 @@ extension FeedbackViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+extension FeedbackViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter?.numberOfItems() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: R.FeedbackViewController.identifier,
+            for: indexPath
+        ) as? FeedBackViewCell else {
+            fatalError(R.FeedbackViewController.fatalError)
+        }
+        
+        let item = presenter?.item(at: indexPath.row)
+        cell.imageView.image = item?.image
+        return cell
+        
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension FeedbackViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        presenter?.updateCellVisibility(in: collectionView)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension FeedbackViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 132, height: 120)
+    }
+}
+
 // MARK: - Setup Constrains
 private extension FeedbackViewController {
     func addSubviews() {
         view.addSubviews([
             restaurantButton, deliviryButton, nameLabel, nameTextField, nameSeparatorView,
             phoneNumberLabel, phoneNumberTextField, phoneNumberSeparatorView,
-            numberOrderLabel, numberOrderTextField, numberOrderSeparatorView
+            numberOrderLabel, numberOrderTextField, numberOrderSeparatorView, collectionView,
+            plusButton, addPhotoLabel, feedBackLabel, subDescription, separatorView, sendButton
         ])
     }
     
@@ -262,20 +391,92 @@ private extension FeedbackViewController {
                 constant: Constants.separatorViewLTopAnchor
             ),
             numberOrderSeparatorView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor, 
+                equalTo: view.leadingAnchor,
                 constant: Constants.leadingAnchor
             ),
             numberOrderSeparatorView.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -Constants.separatorViewLTrailingAnchor
             ),
-            numberOrderSeparatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight)
+            numberOrderSeparatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
+            
+            collectionView.topAnchor.constraint(
+                equalTo: numberOrderSeparatorView.bottomAnchor,
+                constant: Constants.collectionViewTopAcnhor
+            ),
+            collectionView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.leadingAnchorTwentyFive
+            ),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: Constants.collectionViewHeight),
+            
+            plusButton.topAnchor.constraint(
+                equalTo: collectionView.bottomAnchor,
+                constant: Constants.plusButtonTopAcnhor
+            ),
+            plusButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
+            
+            addPhotoLabel.topAnchor.constraint(
+                equalTo: collectionView.bottomAnchor,
+                constant: Constants.addPhotoLabelTopAnchor
+            ),
+            addPhotoLabel.leadingAnchor.constraint(
+                equalTo: plusButton.trailingAnchor,
+                constant: Constants.addPhotoLabelLeadingAnchor
+            ),
+            
+            feedBackLabel.topAnchor.constraint(
+                equalTo: plusButton.bottomAnchor,
+                constant: Constants.feedBackLabelTopAnchor
+            ),
+            feedBackLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor),
+            
+            subDescription.topAnchor.constraint(
+                equalTo: feedBackLabel.bottomAnchor,
+                constant: Constants.subDescriptionLabelTopAnchor
+            ),
+            subDescription.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.subDescriptionLabelLeadingAnchor
+            ),
+            
+            separatorView.topAnchor.constraint(
+                equalTo: subDescription.bottomAnchor,
+                constant: Constants.separatorViewLabelTopAnchor
+            ),
+            separatorView.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.leadingAnchorTwentyFive
+            ),
+            separatorView.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -Constants.separatorViewLabelTrailingAnchor
+            ),
+            separatorView.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
+            
+            sendButton.topAnchor.constraint(
+                equalTo: separatorView.bottomAnchor,
+                constant: Constants.sendButtonLabelTrailingAnchor
+            ),
+            sendButton.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.sendButtonLabelLeadingTrailingAnchor
+            ),
+            sendButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -Constants.sendButtonLabelLeadingTrailingAnchor
+            )
         ])
     }
 }
 
 // MARK: - FeedBackProtocolOutput
 extension FeedbackViewController: FeedBackProtocolOutput {
+    func updateCellVisibility(in collectionView: UICollectionView) {
+        presenter?.updateCellVisibility(in: collectionView)
+    }
+    
     @objc
     func cartButtonTapped() {
         presenter?.cartButtonTapped()
@@ -290,6 +491,20 @@ extension FeedbackViewController: FeedBackProtocolOutput {
     func deliviryButtonTapped() {
         presenter?.deliviryButtonTapped()
     }
+    
+    @objc
+    func plusButtonTapped() {
+        presenter?.plusButtonTapped()
+    }
+    
+    @objc
+    func sendButtonTapped() {
+        presenter?.sendButtonTapped()
+    }
+    
+    func reloadCollectionView() {
+        collectionView.reloadData()
+    }
 }
 
 // MARK: - Constants
@@ -302,6 +517,24 @@ private struct Constants {
     static let buttonTopAnchor: CGFloat = 8
     static let restaurantButtonLeadingButton: CGFloat = 65
     static let deliviryButtonTrailingButton: CGFloat = 31
+    static let deliviryButtonTopBottomInternalAnchor: CGFloat = 10
+    static let deliviryButtonLeftRightInternalAnchor: CGFloat = 49
     static let labelTopAnchor: CGFloat = 25
     static let nameLabelTopAcnhor: CGFloat = 32
+    static let collectionViewTopAcnhor: CGFloat = 23
+    static let collectionViewHeight: CGFloat = 130
+    static let leadingAnchorTwentyFive: CGFloat = 25
+    static let plusButtonTopAcnhor: CGFloat = 24
+    static let plusButtonImageSize: CGFloat = 28
+    static let addPhotoLabelTopAnchor: CGFloat = 30
+    static let addPhotoLabelLeadingAnchor: CGFloat = 10
+    static let feedBackLabelTopAnchor: CGFloat = 32
+    static let subDescriptionLabelTopAnchor: CGFloat = 10
+    static let subDescriptionLabelLeadingAnchor: CGFloat = 26
+    static let separatorViewLabelTopAnchor: CGFloat = 47
+    static let separatorViewLabelTrailingAnchor: CGFloat = 25
+    static let sendButtonLabelTrailingAnchor: CGFloat = 32
+    static let sendButtonLabelLeadingTrailingAnchor: CGFloat = 60
+    static let sendButtonTopBottomInternalAnchor: CGFloat = 12
+    static let sendButtonLeftRightInternalAnchor: CGFloat = 60
 }

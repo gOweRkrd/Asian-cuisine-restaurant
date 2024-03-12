@@ -23,7 +23,7 @@ final class MainViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = R.Colors.white
+        collectionView.backgroundColor = R.Colors.darkGray
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: R.MainViewController.identifier)
         return collectionView
@@ -33,8 +33,8 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupNavigationBar()
         presenter?.viewDidLoad()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     // MARK: - Private methods
@@ -46,6 +46,12 @@ final class MainViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 }
 

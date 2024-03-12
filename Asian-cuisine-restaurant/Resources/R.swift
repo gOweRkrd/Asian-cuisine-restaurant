@@ -70,8 +70,14 @@ enum StringResources {
         static let phoneNumberTextField = "Введите ваш номер телефона"
         static let numberOrderLabel = "Номер заказа"
         static let numberOrderTextField = "Введите ваш номер заказа"
+        static let identifier = "FeedBackViewCell"
+        static let fatalError = "Unable to dequeue FeedBackViewCell"
+        static let addPhotoLabel = "Добавить фото"
+        static let feedBackLabel = "Отзыв"
+        static let subDescription = "Спасибо за вовремя выполненный заказ."
+        static let sendButton = "ОТПРАВИТЬ ОТЗЫВ"
     }
-    
+
     enum Colors {
         static let white = UIColor(hexString: "#FFFFFF")
         static let black = UIColor(hexString: "#000000")
@@ -81,6 +87,7 @@ enum StringResources {
         static let coolGray = UIColor(hexString: "#9AA19A")
         static let yellow = UIColor(hexString: "#FF9900")
         static let tangerine = UIColor(hexString: "FB9C02")
+        static let darkOrange = UIColor(hexString: "F29200")
         static let brownishOrange = UIColor(hexString: "371F07")
     }
 }
