@@ -5,15 +5,15 @@ protocol FeedBackViewProtocolInput: AnyObject {
     func numberOfItems() -> Int
     func detachView()
     func item(at index: Int) -> FeedBackModel
-}
-
-protocol FeedBackProtocolOutput: AnyObject {
-    func reloadCollectionView()
     func cartButtonTapped()
     func restaurantButtonTapped()
     func deliviryButtonTapped()
     func plusButtonTapped()
     func sendButtonTapped()
+}
+
+protocol FeedBackProtocolOutput: AnyObject {
+    func reloadCollectionView()
     func updateCellVisibility(in collectionView: UICollectionView)
 }
 

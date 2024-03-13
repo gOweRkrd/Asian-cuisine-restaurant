@@ -238,6 +238,30 @@ final class FeedbackViewController: UIViewController {
         phoneNumberTextField.delegate = self
         numberOrderTextField.delegate = self
     }
+    @objc
+    private func cartButtonTapped() {
+        presenter?.cartButtonTapped()
+    }
+    
+    @objc
+    private func restaurantButtonTapped() {
+        presenter?.restaurantButtonTapped()
+    }
+    
+    @objc
+    private func deliviryButtonTapped() {
+        presenter?.deliviryButtonTapped()
+    }
+    
+    @objc
+    private func plusButtonTapped() {
+        presenter?.plusButtonTapped()
+    }
+    
+    @objc
+    private func sendButtonTapped() {
+        presenter?.sendButtonTapped()
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -248,11 +272,14 @@ extension FeedbackViewController: UITextFieldDelegate {
             (phoneNumberTextField, phoneNumberLabel, phoneNumberSeparatorView),
             (numberOrderTextField, numberOrderLabel, numberOrderSeparatorView)
         ]
-        
-        for (field, label, separatorView) in fieldsMapping where textField == field {
-            label.textColor = textField.text?.isEmpty == true ? R.Colors.coolGray : R.Colors.tangerine
-            separatorView.backgroundColor = textField.text?.isEmpty == true ? R.Colors.darkGray : R.Colors.tangerine
-            break
+        for (field, label, separatorView) in fieldsMapping {
+            if textField == field {
+                label.textColor = textField.text?.isEmpty == true ? R.Colors.coolGray : R.Colors.tangerine
+                separatorView.backgroundColor = textField.text?.isEmpty == true ? R.Colors.darkGray : R.Colors.tangerine
+            } else {
+                label.textColor = R.Colors.coolGray
+                separatorView.backgroundColor = R.Colors.coolGray
+            }
         }
     }
 }
@@ -289,6 +316,17 @@ extension FeedbackViewController: UICollectionViewDelegate {
 extension FeedbackViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: 132, height: 120)
+    }
+}
+
+// MARK: - FeedBackProtocolOutput
+extension FeedbackViewController: FeedBackProtocolOutput {
+    func updateCellVisibility(in collectionView: UICollectionView) {
+        presenter?.updateCellVisibility(in: collectionView)
+    }
+
+    func reloadCollectionView() {
+        collectionView.reloadData()
     }
 }
 
@@ -468,42 +506,6 @@ private extension FeedbackViewController {
                 constant: -Constants.sendButtonLabelLeadingTrailingAnchor
             )
         ])
-    }
-}
-
-// MARK: - FeedBackProtocolOutput
-extension FeedbackViewController: FeedBackProtocolOutput {
-    func updateCellVisibility(in collectionView: UICollectionView) {
-        presenter?.updateCellVisibility(in: collectionView)
-    }
-    
-    @objc
-    func cartButtonTapped() {
-        presenter?.cartButtonTapped()
-    }
-    
-    @objc
-    func restaurantButtonTapped() {
-        presenter?.restaurantButtonTapped()
-    }
-    
-    @objc
-    func deliviryButtonTapped() {
-        presenter?.deliviryButtonTapped()
-    }
-    
-    @objc
-    func plusButtonTapped() {
-        presenter?.plusButtonTapped()
-    }
-    
-    @objc
-    func sendButtonTapped() {
-        presenter?.sendButtonTapped()
-    }
-    
-    func reloadCollectionView() {
-        collectionView.reloadData()
     }
 }
 

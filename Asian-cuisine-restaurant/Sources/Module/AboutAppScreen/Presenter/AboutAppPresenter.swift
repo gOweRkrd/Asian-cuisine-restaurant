@@ -5,11 +5,11 @@ protocol AboutAppViewProtocolInput: AnyObject {
     func detachView()
     func item(at index: Int) -> AboutAppModel
     func numberOfItems() -> Int
+    func rateButtonTapped()
 }
 
 protocol AboutAppProtocolOutput: AnyObject {
     func reloadCollectionView()
-    func rateButtonTapped()
 }
 
 final class AboutAppPresenter: AboutAppViewProtocolInput {

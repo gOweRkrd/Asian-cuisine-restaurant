@@ -78,6 +78,18 @@ enum StringResources {
         static let sendButton = "ОТПРАВИТЬ ОТЗЫВ"
     }
 
+    enum DeliveryViewController {
+        static let descriptionLabel = "Укажите пожалуйста \n адрес доставки"
+        static let city = "Город"
+        static let station = "Станция"
+        static let street = "Улица/дом"
+        static let desciptionButton = "Cписок адресов"
+        static let locationDesciptionButton = "Геолокация"
+        static let cityTextField = "Введите город"
+        static let stationTextField = "Введите станцию"
+        static let streetTextField = "Введите улицу"
+    }
+
     enum Colors {
         static let white = UIColor(hexString: "#FFFFFF")
         static let black = UIColor(hexString: "#000000")

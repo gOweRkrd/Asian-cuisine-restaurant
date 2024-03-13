@@ -111,6 +111,46 @@ final class AboutViewAppController: UIViewController {
         presenter = AboutAppPresenter()
         presenter?.viewDidLoad()
     }
+    // MARK: - Private methods
+    @objc
+    func rateButtonTapped() {
+        presenter?.rateButtonTapped()
+    }
+}
+
+// MARK: - AboutAppProtocolOutput
+extension AboutViewAppController: AboutAppProtocolOutput {
+    func reloadCollectionView() {
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension AboutViewAppController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter?.numberOfItems() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: R.AboutViewAppController.identifier,
+            for: indexPath
+        ) as? AboutAppViewCell else {
+            fatalError(R.AboutViewAppController.fatalError)
+        }
+        
+        let item = presenter?.item(at: indexPath.row)
+        cell.titleLabel.text = item?.title
+        cell.descriptionLabel.text = item?.desciption
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension AboutViewAppController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.bounds.width, height: 55)
+    }
 }
 
 // MARK: - Setup Constrains
@@ -194,46 +234,6 @@ private extension AboutViewAppController {
             ),
             developerImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.leadingAnchor)
         ])
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension AboutViewAppController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.numberOfItems() ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: R.AboutViewAppController.identifier,
-            for: indexPath
-        ) as? AboutAppViewCell else {
-            fatalError(R.AboutViewAppController.fatalError)
-        }
-        
-        let item = presenter?.item(at: indexPath.row)
-        cell.titleLabel.text = item?.title
-        cell.descriptionLabel.text = item?.desciption
-        return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension AboutViewAppController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.bounds.width, height: 55)
-    }
-}
-
-// MARK: - AboutAppProtocolOutput
-extension AboutViewAppController: AboutAppProtocolOutput {
-    func reloadCollectionView() {
-        collectionView.reloadData()
-    }
-    
-    @objc
-    func rateButtonTapped() {
-        presenter?.rateButtonTapped()
     }
 }
 

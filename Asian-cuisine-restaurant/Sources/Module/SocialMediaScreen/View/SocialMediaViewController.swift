@@ -71,6 +71,43 @@ final class SocialMediaViewController: UIViewController {
     }
 }
 
+// MARK: - SocialMediaProtocolOutput
+extension SocialMediaViewController: SocialMediaProtocolOutput {
+    func reloadCollectionView() {
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension SocialMediaViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        presenter?.numberOfItems() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: R.SocialMediaViewController.identifier,
+            for: indexPath
+        ) as? SocialMediaCell else {
+            fatalError(R.SocialMediaViewController.fatalError)
+        }
+        
+        let socialBrend = presenter?.item(at: indexPath.row).socialBrend
+        if let image = UIImage(named: socialBrend ?? "") {
+            cell.imageView.image = image
+            cell.imageView.accessibilityIdentifier = socialBrend
+        }
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension SocialMediaViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        15
+    }
+}
+
 // MARK: - Setup Constrains
 private extension SocialMediaViewController {
     func addSubviews() {
@@ -119,44 +156,6 @@ private extension SocialMediaViewController {
             ),
             collectionView.heightAnchor.constraint(equalToConstant: Constants.colletionViewHeight)
         ])
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension SocialMediaViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.numberOfItems() ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: R.SocialMediaViewController.identifier,
-            for: indexPath
-        ) as? SocialMediaCell else {
-            fatalError(R.SocialMediaViewController.fatalError)
-        }
-        
-        let socialBrend = presenter?.item(at: indexPath.row).socialBrend
-        if let image = UIImage(named: socialBrend ?? "") {
-            cell.imageView.image = image
-            // Set accessibilityIdentifier to the raw value of SocialMedia enum
-            cell.imageView.accessibilityIdentifier = socialBrend
-        }
-        return cell
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension SocialMediaViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        15
-    }
-}
-
-// MARK: - SocialMediaProtocolOutput
-extension SocialMediaViewController: SocialMediaProtocolOutput {
-    func reloadCollectionView() {
-        collectionView.reloadData()
     }
 }
 

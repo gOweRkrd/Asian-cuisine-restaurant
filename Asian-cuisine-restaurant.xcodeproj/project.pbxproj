@@ -25,6 +25,8 @@
 		CE27E6F72BA06413001FC0D4 /* FeedBackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6F62BA06413001FC0D4 /* FeedBackModel.swift */; };
 		CE27E6FC2BA06A85001FC0D4 /* FeedBackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6FB2BA06A85001FC0D4 /* FeedBackViewCell.swift */; };
 		CE27E6FE2BA083D8001FC0D4 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E6FD2BA083D8001FC0D4 /* UIImage+Extension.swift */; };
+		CE27E7032BA1A474001FC0D4 /* DeliviryViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E7022BA1A474001FC0D4 /* DeliviryViewPresenter.swift */; };
+		CE27E7082BA1A4E3001FC0D4 /* DeleviryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE27E7072BA1A4E3001FC0D4 /* DeleviryViewModel.swift */; };
 		CEC079542B99DB8900E5FAB1 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079532B99DB8900E5FAB1 /* MainModel.swift */; };
 		CEC079562B99DBB000E5FAB1 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */; };
 		CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */; };
@@ -59,6 +61,8 @@
 		CE27E6F62BA06413001FC0D4 /* FeedBackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackModel.swift; sourceTree = "<group>"; };
 		CE27E6FB2BA06A85001FC0D4 /* FeedBackViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackViewCell.swift; sourceTree = "<group>"; };
 		CE27E6FD2BA083D8001FC0D4 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		CE27E7022BA1A474001FC0D4 /* DeliviryViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliviryViewPresenter.swift; sourceTree = "<group>"; };
+		CE27E7072BA1A4E3001FC0D4 /* DeleviryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleviryViewModel.swift; sourceTree = "<group>"; };
 		CEC079532B99DB8900E5FAB1 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
@@ -249,6 +253,30 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		CE27E7042BA1A4BC001FC0D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E7072BA1A4E3001FC0D4 /* DeleviryViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE27E7052BA1A4C2001FC0D4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEC0796D2B9B22E800E5FAB1 /* DeliveryViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE27E7062BA1A4CA001FC0D4 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CE27E7022BA1A474001FC0D4 /* DeliviryViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		CEC079502B99DB3400E5FAB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +339,9 @@
 		CEC0796C2B9B22D500E5FAB1 /* DeliveryScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CEC0796D2B9B22E800E5FAB1 /* DeliveryViewController.swift */,
+				CE27E7042BA1A4BC001FC0D4 /* Model */,
+				CE27E7052BA1A4C2001FC0D4 /* View */,
+				CE27E7062BA1A4CA001FC0D4 /* Presenter */,
 			);
 			path = DeliveryScreen;
 			sourceTree = "<group>";
@@ -420,6 +450,7 @@
 				CE27E6E62B9EF31A001FC0D4 /* AboutAppPresenter.swift in Sources */,
 				CEC079762B9B29AD00E5FAB1 /* String+Extension.swift in Sources */,
 				CEC079652B9B209B00E5FAB1 /* MenuViewController.swift in Sources */,
+				CE27E7082BA1A4E3001FC0D4 /* DeleviryViewModel.swift in Sources */,
 				CEC079682B9B226000E5FAB1 /* PromoViewController.swift in Sources */,
 				5062706A2B999EE900FB63E9 /* R.swift in Sources */,
 				506270562B99976400FB63E9 /* MainViewController.swift in Sources */,
@@ -436,6 +467,7 @@
 				CEC079782B9DC2D500E5FAB1 /* SocialMediaCell.swift in Sources */,
 				506270542B99976400FB63E9 /* SceneDelegate.swift in Sources */,
 				CE27E6D52B9DD036001FC0D4 /* SocialMediaPresenter.swift in Sources */,
+				CE27E7032BA1A474001FC0D4 /* DeliviryViewPresenter.swift in Sources */,
 				CE27E6E42B9EF2E7001FC0D4 /* AboutAppModel.swift in Sources */,
 				506270782B999F0600FB63E9 /* UIColor+Extension.swift in Sources */,
 			);
