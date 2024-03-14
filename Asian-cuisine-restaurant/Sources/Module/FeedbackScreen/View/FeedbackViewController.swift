@@ -64,7 +64,7 @@ final class FeedbackViewController: UIViewController {
     
     private lazy var nameSeparatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.coolGray
         return separatorView
     }()
     
@@ -91,7 +91,7 @@ final class FeedbackViewController: UIViewController {
     
     private lazy var phoneNumberSeparatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.coolGray
         return separatorView
     }()
     
@@ -118,7 +118,7 @@ final class FeedbackViewController: UIViewController {
     
     private lazy var numberOrderSeparatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.coolGray
         return separatorView
     }()
     
@@ -177,7 +177,7 @@ final class FeedbackViewController: UIViewController {
     
     private lazy var separatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.coolGray
         return separatorView
     }()
     
@@ -225,6 +225,7 @@ final class FeedbackViewController: UIViewController {
         addSubviews()
         setupConstraints()
         setupTextField()
+        addTapGestureToDismissKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -238,6 +239,7 @@ final class FeedbackViewController: UIViewController {
         phoneNumberTextField.delegate = self
         numberOrderTextField.delegate = self
     }
+    
     @objc
     private func cartButtonTapped() {
         presenter?.cartButtonTapped()
@@ -261,6 +263,16 @@ final class FeedbackViewController: UIViewController {
     @objc
     private func sendButtonTapped() {
         presenter?.sendButtonTapped()
+    }
+    
+    private func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc
+    private func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 

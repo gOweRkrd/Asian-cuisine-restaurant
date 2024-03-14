@@ -3,6 +3,7 @@ import UIKit
 final class DeliveryViewController: UIViewController {
     
     private var presenter: DeliveryViewPresenter?
+    private var activeTextField: UITextField?
     
     // MARK: - Ui
     private lazy var imageView: UIImageView = {
@@ -184,19 +185,57 @@ final class DeliveryViewController: UIViewController {
         addSubviews()
         setupConstraints()
         delegateTextField()
+        addKeyboardObservers()
+        addTapGestureToDismissKeyboard()
     }
-    
+
     // MARK: - Private methods
-    func delegateTextField() {
+    private func delegateTextField() {
         cityTextField.delegate = self
         stationTextField.delegate = self
         streetTextField.delegate = self
+    }
+    
+    // MARK: - Notification center
+    private func addKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    private func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc 
+    private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        let distanceToBottom = view.frame.height - ((activeTextField?.frame.maxY ?? 00) + 25)
+        
+        if distanceToBottom < keyboardHeight {
+            view.frame.origin.y = -(keyboardHeight - distanceToBottom)
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification: Notification) {
+        view.frame.origin.y = 0
     }
 }
 
 // MARK: - UITextFieldDelegate
 extension DeliveryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
         if textField.text == R.DeliveryViewController.city.uppercased() ||
             textField.text == R.DeliveryViewController.station.uppercased() ||
             textField.text == R.DeliveryViewController.street.uppercased() {
@@ -219,6 +258,7 @@ extension DeliveryViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
         if textField.text?.isEmpty == true {
             switch textField {
             case cityTextField:
