@@ -41,8 +41,9 @@ final class RestaurantsViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
     }
-    
-    // MARK: - Private Methods
+}
+// MARK: - Setup Constrains
+private extension RestaurantsViewCell {
     private func addSubviews() {
         stackView.addArrangedSubview(nameRestaurantsLabel)
         stackView.addArrangedSubview(addressRestaurantsLabel)

@@ -96,12 +96,21 @@ enum StringResources {
         static let identifier = "RestaurantsViewCell"
         static let fatalError = "Unable to dequeue RestaurantsViewCell"
     }
+    
+    enum PromoViewCell {
+        static let titleLabel = "text"
+    }
+    
+    enum PromoViewController {
+        static let identifier = "PromoViewCell"
+        static let fatalError = "Unable to dequeue PromoViewCell"
+    }
 
     enum Colors {
         static let white = UIColor(hexString: "#FFFFFF")
         static let black = UIColor(hexString: "#000000")
-        static let gray = UIColor(hexString: "#C3C4C4")
-        static let darkGray = UIColor(hexString: "#59595A")
+        static let darkGray = UIColor(hexString: "#1F2023")
+        static let gray = UIColor(hexString: "#59595A")
         static let lightGray = UIColor(hexString: "#D8D8D8")
         static let coolGray = UIColor(hexString: "#9AA19A")
         static let yellow = UIColor(hexString: "#FF9900")

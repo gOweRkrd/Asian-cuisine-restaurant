@@ -30,6 +30,9 @@
 		CE95F15E2BA451C0004EBAE0 /* RestaurantsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95F15D2BA451C0004EBAE0 /* RestaurantsPresenter.swift */; };
 		CE95F1602BA4522B004EBAE0 /* RestaurantsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95F15F2BA4522B004EBAE0 /* RestaurantsModel.swift */; };
 		CE95F1652BA45843004EBAE0 /* RestaurantsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95F1642BA45843004EBAE0 /* RestaurantsViewCell.swift */; };
+		CE95F16B2BA48148004EBAE0 /* PromoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95F16A2BA48148004EBAE0 /* PromoModel.swift */; };
+		CE95F16F2BA4819A004EBAE0 /* PromoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95F16E2BA4819A004EBAE0 /* PromoPresenter.swift */; };
+		CE95F1712BA48428004EBAE0 /* PromoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95F1702BA48428004EBAE0 /* PromoViewCell.swift */; };
 		CEC079542B99DB8900E5FAB1 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079532B99DB8900E5FAB1 /* MainModel.swift */; };
 		CEC079562B99DBB000E5FAB1 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */; };
 		CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */; };
@@ -69,6 +72,9 @@
 		CE95F15D2BA451C0004EBAE0 /* RestaurantsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsPresenter.swift; sourceTree = "<group>"; };
 		CE95F15F2BA4522B004EBAE0 /* RestaurantsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsModel.swift; sourceTree = "<group>"; };
 		CE95F1642BA45843004EBAE0 /* RestaurantsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsViewCell.swift; sourceTree = "<group>"; };
+		CE95F16A2BA48148004EBAE0 /* PromoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoModel.swift; sourceTree = "<group>"; };
+		CE95F16E2BA4819A004EBAE0 /* PromoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoPresenter.swift; sourceTree = "<group>"; };
+		CE95F1702BA48428004EBAE0 /* PromoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoViewCell.swift; sourceTree = "<group>"; };
 		CEC079532B99DB8900E5FAB1 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		CEC079552B99DBB000E5FAB1 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		CEC079572B99DCE200E5FAB1 /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +314,31 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		CE95F1692BA4813C004EBAE0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE95F16A2BA48148004EBAE0 /* PromoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE95F16C2BA4814D004EBAE0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CEC079672B9B226000E5FAB1 /* PromoViewController.swift */,
+				CE95F1702BA48428004EBAE0 /* PromoViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE95F16D2BA48154004EBAE0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				CE95F16E2BA4819A004EBAE0 /* PromoPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		CEC079502B99DB3400E5FAB1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,7 +385,9 @@
 		CEC079662B9B223F00E5FAB1 /* PromoScreen */ = {
 			isa = PBXGroup;
 			children = (
-				CEC079672B9B226000E5FAB1 /* PromoViewController.swift */,
+				CE95F1692BA4813C004EBAE0 /* Model */,
+				CE95F16C2BA4814D004EBAE0 /* View */,
+				CE95F16D2BA48154004EBAE0 /* Presenter */,
 			);
 			path = PromoScreen;
 			sourceTree = "<group>";
@@ -474,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE95F16B2BA48148004EBAE0 /* PromoModel.swift in Sources */,
 				CE27E6D72B9DD292001FC0D4 /* SocialMediaModel.swift in Sources */,
 				CE27E6E02B9EDDF2001FC0D4 /* AboutViewAppController.swift in Sources */,
 				CEC079582B99DCE200E5FAB1 /* MainViewCell.swift in Sources */,
@@ -487,12 +521,14 @@
 				CEC079682B9B226000E5FAB1 /* PromoViewController.swift in Sources */,
 				CE95F1652BA45843004EBAE0 /* RestaurantsViewCell.swift in Sources */,
 				5062706A2B999EE900FB63E9 /* R.swift in Sources */,
+				CE95F16F2BA4819A004EBAE0 /* PromoPresenter.swift in Sources */,
 				506270562B99976400FB63E9 /* MainViewController.swift in Sources */,
 				CEC079542B99DB8900E5FAB1 /* MainModel.swift in Sources */,
 				CE95F1602BA4522B004EBAE0 /* RestaurantsModel.swift in Sources */,
 				CE27E6EE2B9F13DA001FC0D4 /* FeedbackPresenter.swift in Sources */,
 				506270792B999F0600FB63E9 /* UIView+Extension.swift in Sources */,
 				CE27E6FC2BA06A85001FC0D4 /* FeedBackViewCell.swift in Sources */,
+				CE95F1712BA48428004EBAE0 /* PromoViewCell.swift in Sources */,
 				CEC079742B9B23A600E5FAB1 /* SocialMediaViewController.swift in Sources */,
 				506270522B99976400FB63E9 /* AppDelegate.swift in Sources */,
 				CE27E6E22B9EF12D001FC0D4 /* AboutAppViewCell.swift in Sources */,

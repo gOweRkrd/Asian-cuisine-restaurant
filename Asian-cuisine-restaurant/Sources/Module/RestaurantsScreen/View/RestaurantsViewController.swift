@@ -79,6 +79,7 @@ final class RestaurantsViewController: UIViewController {
         setupConstraints()
     }
     
+    // MARK: - Private methods
     @objc
     private func cartButtonTapped() {
         presenter?.cartButtonTapped()

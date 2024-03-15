@@ -13,7 +13,7 @@ final class AboutViewAppController: UIViewController {
     
     private lazy var separatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.gray
         return separatorView
     }()
     
@@ -35,13 +35,13 @@ final class AboutViewAppController: UIViewController {
     
     private lazy var subSeparatorView: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.gray
         return separatorView
     }()
     
     private lazy var subSeparatorView2: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.gray
         return separatorView
     }()
     
@@ -68,7 +68,7 @@ final class AboutViewAppController: UIViewController {
     
     private lazy var subSeparatorView3: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.gray
         return separatorView
     }()
     
@@ -83,7 +83,7 @@ final class AboutViewAppController: UIViewController {
     
     private lazy var subSeparatorView4: UIView = {
         let separatorView = UIView()
-        separatorView.backgroundColor = R.Colors.darkGray
+        separatorView.backgroundColor = R.Colors.gray
         return separatorView
     }()
     

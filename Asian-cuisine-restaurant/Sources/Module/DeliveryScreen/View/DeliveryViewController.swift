@@ -293,7 +293,7 @@ extension DeliveryViewController: UITextFieldDelegate {
         for (field, label, separatorView) in fieldsMapping {
             if textField == field {
                 label.textColor = textField.text?.isEmpty == true ? R.Colors.coolGray : R.Colors.tangerine
-                separatorView.backgroundColor = textField.text?.isEmpty == true ? R.Colors.darkGray : R.Colors.tangerine
+                separatorView.backgroundColor = textField.text?.isEmpty == true ? R.Colors.gray : R.Colors.tangerine
             } else {
                 label.textColor = R.Colors.coolGray
                 separatorView.backgroundColor = R.Colors.coolGray

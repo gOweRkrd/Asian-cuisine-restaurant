@@ -23,7 +23,7 @@ final class MainViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = R.Colors.darkGray
+        collectionView.backgroundColor = R.Colors.gray
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.register(MainViewCell.self, forCellWithReuseIdentifier: R.MainViewController.identifier)
         return collectionView
@@ -72,7 +72,7 @@ extension MainViewController: UICollectionViewDataSource {
         cell.textLabel.text = item?.text
         cell.imageView.image = item?.image
         cell.nameRestaurantsLabel.text = item?.nameRestaurants
-        cell.backgroundColor = R.Colors.darkGray
+        cell.backgroundColor = R.Colors.gray
         return cell
     }
 }
@@ -101,6 +101,9 @@ extension MainViewController: UICollectionViewDelegate {
         case .promo:
             let promoViewController = PromoViewController()
             promoViewController.title = MainItem.promo.rawValue.capitalized
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: R.Colors.white
+            ]
             navigationController?.pushViewController(promoViewController, animated: true)
         case .restaurants:
             let restaurantsViewController = RestaurantsViewController()
