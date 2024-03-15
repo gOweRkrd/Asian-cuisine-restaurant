@@ -71,7 +71,7 @@ extension MainViewController: UICollectionViewDataSource {
         let item = presenter?.item(at: indexPath.row)
         cell.textLabel.text = item?.text
         cell.imageView.image = item?.image
-        cell.nameRestaurants.text = item?.nameRestaurants
+        cell.nameRestaurantsLabel.text = item?.nameRestaurants
         cell.backgroundColor = R.Colors.darkGray
         return cell
     }
@@ -105,6 +105,9 @@ extension MainViewController: UICollectionViewDelegate {
         case .restaurants:
             let restaurantsViewController = RestaurantsViewController()
             restaurantsViewController.title = MainItem.restaurants.rawValue.capitalized
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSAttributedString.Key.foregroundColor: R.Colors.white
+            ]
             navigationController?.pushViewController(restaurantsViewController, animated: true)
         case .delivery:
             let deliveryViewController = DeliveryViewController()

@@ -89,6 +89,13 @@ enum StringResources {
         static let stationTextField = "Введите станцию"
         static let streetTextField = "Введите улицу"
     }
+    
+    enum RestaurantsViewController {
+        static let forMapsButton = "На карте"
+        static let allButton = "Все"
+        static let identifier = "RestaurantsViewCell"
+        static let fatalError = "Unable to dequeue RestaurantsViewCell"
+    }
 
     enum Colors {
         static let white = UIColor(hexString: "#FFFFFF")

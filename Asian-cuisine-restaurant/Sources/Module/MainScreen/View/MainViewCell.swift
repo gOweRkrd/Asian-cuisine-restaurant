@@ -9,7 +9,7 @@ final class MainViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var nameRestaurants: UILabel = {
+    lazy var nameRestaurantsLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 40, weight: .medium)
@@ -44,7 +44,7 @@ final class MainViewCell: UICollectionViewCell {
 // MARK: - Setup Constrains
 private extension MainViewCell {
     func addSubView() {
-        stackView.addArrangedSubview(nameRestaurants)
+        stackView.addArrangedSubview(nameRestaurantsLabel)
         stackView.addArrangedSubview(textLabel)
         contentView.addSubviews([imageView, stackView])
     }
