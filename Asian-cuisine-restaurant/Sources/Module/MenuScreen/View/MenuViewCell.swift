@@ -1,30 +1,17 @@
 import UIKit
 
-final class MainViewCell: UICollectionViewCell {
-
-    lazy var textLabel: UILabel = {
+final class MenuViewCell: UICollectionViewCell {
+    
+    lazy var menuLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
-    lazy var mainImageTittle: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .center
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        return stackView
     }()
     
     // MARK: - Lifecycle
@@ -40,11 +27,9 @@ final class MainViewCell: UICollectionViewCell {
 }
 
 // MARK: - Setup Constrains
-private extension MainViewCell {
+private extension MenuViewCell {
     func addSubView() {
-        stackView.addArrangedSubview(mainImageTittle)
-        stackView.addArrangedSubview(textLabel)
-        contentView.addSubviews([imageView, stackView])
+        contentView.addSubviews([imageView, menuLabel])
     }
     
     func setupConstraints() {
@@ -54,8 +39,13 @@ private extension MainViewCell {
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            stackView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            menuLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.sizeAnchor),
+            menuLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sizeAnchor)
         ])
     }
+}
+
+// MARK: - Constants
+private struct Constants {
+    static let sizeAnchor: CGFloat = 16
 }

@@ -2,6 +2,6 @@ import UIKit
 
 struct MainModel {
     let text: String
-    let nameRestaurants: String?
+    let mainImage: UIImage?
     let image: UIImage
 }

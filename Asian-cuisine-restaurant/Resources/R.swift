@@ -105,7 +105,13 @@ enum StringResources {
         static let identifier = "PromoViewCell"
         static let fatalError = "Unable to dequeue PromoViewCell"
     }
-
+    
+    enum MenuViewController {
+        static let identifier = "MenuViewCell"
+        static let fatalError = "Unable to dequeue MenuViewCell"
+        static let searchTextField = "Введите адрес"
+    }
+    
     enum Colors {
         static let white = UIColor(hexString: "#FFFFFF")
         static let black = UIColor(hexString: "#000000")

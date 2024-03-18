@@ -24,17 +24,17 @@ final class MainPresenter: MainViewProtocolInput {
         items = [
             MainModel(
                 text: R.MainItemRestaurants.menu,
-                nameRestaurants: R.MainItemRestaurants.nameRestaurants,
+                mainImage: .mainTitle,
                 image: .menu
             ),
-            MainModel(text: R.MainItemRestaurants.promo, nameRestaurants: nil, image: .promo),
-            MainModel(text: R.MainItemRestaurants.restaurants, nameRestaurants: nil, image: .restaurants),
-            MainModel(text: R.MainItemRestaurants.delivery, nameRestaurants: nil, image: .delivery),
-            MainModel(text: R.MainItemRestaurants.feedback, nameRestaurants: nil, image: .feedback),
-            MainModel(text: R.MainItemRestaurants.aboutApp, nameRestaurants: nil, image: .restaurants),
+            MainModel(text: R.MainItemRestaurants.promo, mainImage: nil, image: .promo),
+            MainModel(text: R.MainItemRestaurants.restaurants, mainImage: nil, image: .restaurants),
+            MainModel(text: R.MainItemRestaurants.delivery, mainImage: nil, image: .delivery),
+            MainModel(text: R.MainItemRestaurants.feedback, mainImage: nil, image: .feedback),
+            MainModel(text: R.MainItemRestaurants.aboutApp, mainImage: nil, image: .restaurants),
             MainModel(
                 text: R.MainItemRestaurants.socialMedia,
-                nameRestaurants: nil,
+                mainImage: nil,
                 image: .aboutApp
             )
         ]

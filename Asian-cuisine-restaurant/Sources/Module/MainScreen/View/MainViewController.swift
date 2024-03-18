@@ -71,7 +71,7 @@ extension MainViewController: UICollectionViewDataSource {
         let item = presenter?.item(at: indexPath.row)
         cell.textLabel.text = item?.text
         cell.imageView.image = item?.image
-        cell.nameRestaurantsLabel.text = item?.nameRestaurants
+        cell.mainImageTittle.image = item?.mainImage
         cell.backgroundColor = R.Colors.gray
         return cell
     }
@@ -96,7 +96,6 @@ extension MainViewController: UICollectionViewDelegate {
         switch menuItem {
         case .menu:
             let menuViewController = MenuViewController()
-            menuViewController.title = MainItem.menu.rawValue.capitalized
             navigationController?.pushViewController(menuViewController, animated: true)
         case .promo:
             let promoViewController = PromoViewController()
