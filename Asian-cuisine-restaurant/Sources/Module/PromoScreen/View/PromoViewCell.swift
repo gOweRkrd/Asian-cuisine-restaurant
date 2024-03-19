@@ -2,19 +2,19 @@ import UIKit
 
 final class PromoViewCell: UICollectionViewCell {
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    lazy var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.tangerine
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.numberOfLines = 2
@@ -48,7 +48,15 @@ final class PromoViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
     }
+    
+    // MARK: - Public methods
+    func configure(model: PromoModel) {
+        self.imageView.image = model.image
+        self.dateLabel.text = model.date
+        self.titleLabel.text = model.title
+    }
 }
+
 // MARK: - Setup Constrains
 private extension PromoViewCell {
     private func addSubviews() {

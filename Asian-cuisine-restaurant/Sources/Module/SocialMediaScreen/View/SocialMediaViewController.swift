@@ -90,12 +90,9 @@ extension SocialMediaViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? SocialMediaCell else {
             fatalError(R.SocialMediaViewController.fatalError)
-        }
-        
-        let socialBrend = presenter?.item(at: indexPath.row).socialBrend
-        if let image = UIImage(named: socialBrend ?? "") {
-            cell.imageView.image = image
-            cell.imageView.accessibilityIdentifier = socialBrend
+        }        
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
         }
         return cell
     }

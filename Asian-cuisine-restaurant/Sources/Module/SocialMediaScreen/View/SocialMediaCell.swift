@@ -27,7 +27,7 @@ private enum SocialMedia: String {
 
 final class SocialMediaCell: UICollectionViewCell {
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -41,6 +41,13 @@ final class SocialMediaCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError(R.FatalError.fatalError)
+    }
+    
+    // MARK: - Public methods
+    func configure(model: SocialMediaModel) {
+        if let image = UIImage(named: model.socialBrend) {
+            self.imageView.image = image
+        }
     }
     
     // MARK: - Private methods

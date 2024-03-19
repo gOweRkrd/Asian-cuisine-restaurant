@@ -2,14 +2,14 @@ import UIKit
 
 final class AboutAppViewCell: UICollectionViewCell {
     
-    lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.coolGray
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         return label
     }()
     
-    lazy var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
@@ -25,6 +25,12 @@ final class AboutAppViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
+    }
+    
+    // MARK: - Public methods
+    func configure(model: AboutAppModel) {
+        self.titleLabel.text = model.title
+        self.descriptionLabel.text = model.desciption
     }
 }
 

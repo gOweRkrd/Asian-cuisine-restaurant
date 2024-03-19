@@ -2,19 +2,19 @@ import UIKit
 
 final class MainViewCell: UICollectionViewCell {
 
-    lazy var textLabel: UILabel = {
+    private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
-    lazy var mainImageTittle: UIImageView = {
+    private lazy var mainImageTittle: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
@@ -36,6 +36,13 @@ final class MainViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
+    }
+    
+    // MARK: - Public methods
+    func configure(model: MainModel) {
+        self.textLabel.text = model.text
+        self.mainImageTittle.image = model.mainImage
+        self.imageView.image = model.image
     }
 }
 

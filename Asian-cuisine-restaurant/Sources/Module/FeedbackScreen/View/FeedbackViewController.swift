@@ -310,10 +310,10 @@ extension FeedbackViewController: UICollectionViewDataSource {
             fatalError(R.FeedbackViewController.fatalError)
         }
         
-        let item = presenter?.item(at: indexPath.row)
-        cell.imageView.image = item?.image
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
+        }
         return cell
-        
     }
 }
 

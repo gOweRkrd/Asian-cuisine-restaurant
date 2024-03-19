@@ -113,7 +113,7 @@ final class AboutViewAppController: UIViewController {
     }
     // MARK: - Private methods
     @objc
-    func rateButtonTapped() {
+    private func rateButtonTapped() {
         presenter?.rateButtonTapped()
     }
 }
@@ -139,9 +139,9 @@ extension AboutViewAppController: UICollectionViewDataSource {
             fatalError(R.AboutViewAppController.fatalError)
         }
         
-        let item = presenter?.item(at: indexPath.row)
-        cell.titleLabel.text = item?.title
-        cell.descriptionLabel.text = item?.desciption
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
+        }
         return cell
     }
 }

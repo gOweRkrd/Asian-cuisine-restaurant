@@ -73,10 +73,9 @@ extension PromoViewController: UICollectionViewDataSource {
         ) as? PromoViewCell else {
             fatalError(R.PromoViewController.fatalError)
         }
-        let item = presenter?.item(at: indexPath.row)
-        cell.imageView.image = item?.image
-        cell.dateLabel.text = item?.date
-        cell.titleLabel.text = item?.title
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
+        }
         cell.backgroundColor = R.Colors.darkGray
         return cell
     }

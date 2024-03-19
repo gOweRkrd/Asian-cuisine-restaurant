@@ -2,21 +2,21 @@ import UIKit
 
 final class RestaurantsViewCell: UICollectionViewCell {
     
-    lazy var nameRestaurantsLabel: UILabel = {
+    private lazy var nameRestaurantsLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     
-    lazy var addressRestaurantsLabel: UILabel = {
+    private lazy var addressRestaurantsLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.lightGray
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         return label
     }()
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         let gradientViewFrame = CGRect(x: 0, y: 0, width: Constants.gradientWidth, height: Constants.gradientHeight)
         imageView.addGradient(frame: gradientViewFrame)
@@ -40,6 +40,13 @@ final class RestaurantsViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
+    }
+    
+    // MARK: - Public methods
+    func configure(model: RestaurantsModel) {
+        self.nameRestaurantsLabel.text = model.nameRestaurants
+        self.addressRestaurantsLabel.text = model.address
+        self.imageView.image = model.photoRestaurants
     }
 }
 // MARK: - Setup Constrains

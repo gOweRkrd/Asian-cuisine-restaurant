@@ -2,14 +2,14 @@ import UIKit
 
 final class MenuViewCell: UICollectionViewCell {
     
-    lazy var menuLabel: UILabel = {
+    private lazy var menuLabel: UILabel = {
         let label = UILabel()
         label.textColor = R.Colors.white
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
@@ -23,6 +23,12 @@ final class MenuViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
+    }
+    
+    // MARK: - Public methods
+    func configure(model: MenuModel) {
+        self.menuLabel.text = model.menu
+        self.imageView.image = model.image
     }
 }
 

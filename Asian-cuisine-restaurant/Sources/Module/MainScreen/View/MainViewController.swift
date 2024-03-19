@@ -68,10 +68,9 @@ extension MainViewController: UICollectionViewDataSource {
         ) as? MainViewCell else {
             fatalError(R.MainViewController.fatalError)
         }
-        let item = presenter?.item(at: indexPath.row)
-        cell.textLabel.text = item?.text
-        cell.imageView.image = item?.image
-        cell.mainImageTittle.image = item?.mainImage
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
+        }
         cell.backgroundColor = R.Colors.gray
         return cell
     }

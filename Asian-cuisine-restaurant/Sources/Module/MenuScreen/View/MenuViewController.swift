@@ -99,9 +99,9 @@ extension MenuViewController: UICollectionViewDataSource {
         ) as? MenuViewCell else {
             fatalError(R.MenuViewController.fatalError)
         }
-        let item = presenter?.item(at: indexPath.row)
-        cell.menuLabel.text = item?.menu
-        cell.imageView.image = item?.image
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
+        }
         cell.backgroundColor = R.Colors.black
         return cell
     }

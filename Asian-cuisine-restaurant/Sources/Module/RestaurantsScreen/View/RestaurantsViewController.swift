@@ -109,10 +109,9 @@ extension RestaurantsViewController: UICollectionViewDataSource {
         ) as? RestaurantsViewCell else {
             fatalError(R.RestaurantsViewController.fatalError)
         }
-        let item = presenter?.item(at: indexPath.row)
-        cell.addressRestaurantsLabel.text = item?.address
-        cell.imageView.image = item?.photoRestaurants
-        cell.nameRestaurantsLabel.text = item?.nameRestaurants
+        if let item = presenter?.item(at: indexPath.row) {
+            cell.configure(model: item)
+        }
         return cell
     }
 }

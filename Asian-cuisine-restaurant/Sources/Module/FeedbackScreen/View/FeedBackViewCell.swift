@@ -2,7 +2,7 @@ import UIKit
 
 final class FeedBackViewCell: UICollectionViewCell {
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         return imageView
     }()
@@ -16,6 +16,11 @@ final class FeedBackViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError(R.FatalError.fatalError)
+    }
+    
+    // MARK: - Public methods
+    func configure(model: FeedBackModel) {
+        self.imageView.image = model.image
     }
 }
 
